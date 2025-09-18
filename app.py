@@ -24,10 +24,7 @@ def header():
     with open('templates/header.html', 'r', encoding='utf-8-sig') as header_file:
         header_html = header_file.read()
 
-    with open('templates/introduccion.html', 'r', encoding='utf-8-sig') as intro_file:
-        intro_html = intro_file.read()
-
-    return render_template('header.html', header=header_html, intro=intro_html)
+    return render_template('header.html', header=header_html)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
