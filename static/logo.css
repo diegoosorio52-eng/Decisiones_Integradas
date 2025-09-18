@@ -1,0 +1,5 @@
+.logo img {
+  width: 180px;   /* tamaño fijo inicial */
+  max-width: 80%; /* nunca ocupar más del ancho de pantalla */
+  height: auto;
+}
