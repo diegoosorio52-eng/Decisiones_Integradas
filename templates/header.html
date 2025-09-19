@@ -40,30 +40,38 @@
       animation: fadeIn 2s ease;
     }
 
-    /* Barra de navegación */
-    nav {
-      background: #00B0F0;
+    /* Barra de navegación - estilo renovado */
+    .nav-bar {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      padding: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 15px;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      margin: 15px auto;
+      max-width: 95%;
     }
 
-    nav a {
-      color: white;
+    .nav-bar a {
       text-decoration: none;
-      font-weight: bold;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background 0.3s, transform 0.2s;
-      font-size: 0.95rem;
+      padding: 12px 25px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #00B0F0, #0077B6);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 3px 6px rgba(0, 176, 240, 0.2);
       white-space: nowrap;
     }
 
-    nav a:hover {
-      background: #008ecc;
-      transform: scale(1.05);
+    .nav-bar a:hover {
+      background: linear-gradient(135deg, #0077B6, #00B0F0);
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 6px 15px rgba(0, 176, 240, 0.35);
     }
 
     /* Sección introductoria */
@@ -112,14 +120,14 @@
 
     /* Media Queries para móviles */
     @media (max-width: 480px) {
-      nav {
+      .nav-bar {
         flex-direction: column;
-        gap: 5px;
+        gap: 8px;
       }
 
-      nav a {
+      .nav-bar a {
         font-size: 1rem;
-        padding: 8px 12px;
+        padding: 10px 20px;
       }
 
       .intro {
@@ -127,7 +135,6 @@
         margin: 10px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -142,7 +149,7 @@
   </header>
 
   <!-- Barra de capítulos -->
-  <nav>
+  <nav class="nav-bar">
     <a href="/capitulo1">Análisis Predictivo</a>
     <a href="/capitulo2">Riesgos Hídricos</a>
     <a href="/capitulo3">Redes y Tratamiento</a>
@@ -160,7 +167,7 @@
     </p>
 
     <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/6kke9YIohQQ" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/6kke9YIohQQ" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <p>
