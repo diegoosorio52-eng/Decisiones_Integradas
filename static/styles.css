@@ -193,3 +193,36 @@ footer {
     height: 200px;
   }
 }
+
+/*//////////////////////////////////////////////////////////
+/* Subbarra de botones para Análisis Predictivo */
+.sub-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+    margin: 15px auto;
+    max-width: 95%;
+    background: #e6f2ff;  /* fondo suave azul claro */
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 112, 210, 0.2);
+}
+
+.sub-bar a {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #0077B6, #00B0F0);
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sub-bar a:hover {
+    background: linear-gradient(135deg, #00B0F0, #0077B6);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 112, 210, 0.35);
+}
