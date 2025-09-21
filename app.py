@@ -53,6 +53,7 @@ def alertas():
 def reportes():
     return render_template('reportes.html')
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
-
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Render define $PORT
+    app.run(host="0.0.0.0", port=port, debug=True)
