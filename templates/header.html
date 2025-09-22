@@ -3,6 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis Predictivo | Decisiones Integradas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Subbarra de botones para Análisis Predictivo */
+    .sub-bar {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px;
+        margin: 15px auto;
+        max-width: 95%;
+        background: #e6f2ff;  /* fondo suave azul claro */
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0, 112, 210, 0.2);
+    }
+
+    .sub-bar a {
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #0077B6, #00B0F0);
+        color: #fff;
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .sub-bar a:hover {
+        background: linear-gradient(135deg, #00B0F0, #0077B6);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 112, 210, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Encabezado -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decisiones Integradas</title>
   <style>
     /* Reset básico */
@@ -149,15 +194,12 @@
     </div>
   </header>
 
-  <!-- Barra de capítulos -->
-  <nav class="nav-bar">
-    <a href="/capitulo1">Análisis Predictivo</a>
-    <a href="/capitulo2">Riesgos Hídricos</a>
-    <a href="/capitulo3">Redes y Tratamiento</a>
-    <a href="/capitulo4">Investigación Social</a>
-    <a href="/capitulo5">Costos Ambientales</a>
-    <a href="/capitulo6">Consultoría</a>
-  </nav>
+<nav class="sub-bar">
+  <a href="/capitulo1">Analítica y Vulnerabilidad de Riesgos Hídricos</a>
+  <a href="/capitulo2">Instalación de Redes y Sistemas de Tratamiento</a>
+  <a href="/capitulo3">Costos y Gestión Socioambiental</a>
+  <a href="/capitulo4">Consultoría y Capacitación</a>
+</nav>
 
   <!-- Introducción -->
   <section class="intro">
