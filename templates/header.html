@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decisiones Integradas - Feedforward Technology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* VARIABLES FUTURISTAS */
         :root {
@@ -193,88 +193,142 @@
             100% { transform: translateY(-100vh) scale(0); opacity: 0; }
         }
 
-        /* NAVEGACIÓN FUTURISTA - MEJORADA PARA MÓVIL */
+        /* NAVEGACIÓN FUTURISTA - COMPLETAMENTE REDISEÑADA */
         .cyber-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background: rgba(10, 10, 31, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--neon-blue);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            padding: 10px 5%;
+            background: rgba(10, 10, 31, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid transparent;
+            background-image: linear-gradient(135deg, rgba(10, 10, 31, 0.98), rgba(20, 20, 50, 0.98));
+            box-shadow: 0 5px 30px rgba(0, 243, 255, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
             transition: var(--transition);
+            border-image: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink)) 1;
         }
 
+        /* CONTENEDOR PRINCIPAL DEL ENCABEZADO */
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
+        /* LOGO PRINCIPAL - MÁS GRANDE Y VISIBLE */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             position: relative;
+            width: 150px;  /* Tamaño aumentado */
+            height: 150px;
+            transition: var(--transition);
         }
 
         .logo-glow {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--neon-blue);
-            box-shadow: var(--box-glow);
+            width: 100%;
+            height: 100%;
+            border-radius: 20px; /* Esquinas más modernas */
+            object-fit: contain;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--dark-space), var(--cyber-gray)) padding-box,
+                        linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) border-box;
+            filter: drop-shadow(0 0 20px var(--neon-blue));
+            padding: 10px;
             transition: var(--transition);
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         .logo-glow:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 0 25px var(--neon-blue), 0 0 50px rgba(0, 243, 255, 0.5);
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px var(--neon-purple));
+            animation: logoPulse 2s infinite;
         }
 
-        .logo-orb {
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1.05); }
+            50% { transform: scale(1.08); }
+        }
+
+        /* EFECTO DE PARTÍCULAS MEJORADO */
+        .logo-particles {
             position: absolute;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-pink), var(--neon-blue));
-            animation: rotate 3s linear infinite;
-            opacity: 0.3;
-            filter: blur(10px);
+            border-radius: 20px;
             z-index: 1;
+            overflow: hidden;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: particleFloat 3s linear infinite;
+            filter: blur(1px);
         }
 
+        /* TÍTULO DE LA EMPRESA - NUEVO ESTILO */
+        .company-title {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        .company-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-green), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .company-subtitle {
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        /* MENÚ DE NAVEGACIÓN MEJORADO */
         .cyber-links {
             display: flex;
-            gap: 20px;
-            transition: var(--transition);
+            gap: 5px;
+            background: rgba(0, 243, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 5px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
         .cyber-link {
             text-decoration: none;
             color: var(--neon-blue);
             font-weight: 600;
-            padding: 8px 15px;
-            border: 1px solid transparent;
-            border-radius: 25px;
+            padding: 12px 20px;
+            border-radius: 12px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            text-shadow: var(--text-glow);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-shadow: 0 0 5px currentColor;
+            border: 1px solid transparent;
         }
 
         .cyber-link:before {
@@ -284,8 +338,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent);
+            transition: left 0.6s;
         }
 
         .cyber-link:hover:before {
@@ -293,9 +347,59 @@
         }
 
         .cyber-link:hover {
+            background: rgba(0, 243, 255, 0.15);
             border-color: var(--neon-blue);
-            box-shadow: var(--box-glow);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
             transform: translateY(-2px);
+        }
+
+        /* BARRA DE BÚSQUEDA EN EL ENCABEZADO */
+        .header-search {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .search-mini {
+            display: flex;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 25px;
+            padding: 5px 15px;
+            border: 1px solid var(--neon-blue);
+            transition: var(--transition);
+        }
+
+        .search-mini:focus-within {
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .search-mini-input {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            width: 180px;
+        }
+
+        .search-mini-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-mini-button {
+            background: transparent;
+            border: none;
+            color: var(--neon-blue);
+            cursor: pointer;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .search-mini-button:hover {
+            transform: scale(1.2);
+            color: var(--neon-green);
         }
 
         /* MENÚ HAMBURGUESA PARA MÓVIL */
@@ -338,28 +442,39 @@
             overflow: hidden;
         }
 
+        /* CORRECCIÓN DEL LOGO HERO */
         .logo-hero-container {
             position: relative;
             margin-bottom: 30px;
+            display: inline-block;
+            width: 280px;  /* Contenedor más grande */
+            height: 280px;
         }
 
         .logo-hero {
-            width: 250px;
-            height: 250px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            object-fit: cover;
+            object-fit: contain; /* CAMBIA de 'cover' a 'contain' */
             border: 3px solid var(--neon-blue);
-            box-shadow: var(--box-glow);
-            display: block;
-            margin: 0 auto;
+            filter: drop-shadow(0 0 20px var(--neon-blue));
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            background: rgba(10, 10, 31, 0.8); /* Fondo para áreas transparentes */
+            padding: 15px; /* Espacio interno */
+        }
+
+        /* ELIMINA O REDUCE LOS EFECTOS QUE TAPAN EL LOGO */
+        .logo-particles,
+        .logo-hero-orb {
+            opacity: 0.2; /* Reduce la opacidad para que no tape */
+            z-index: 1;   /* Asegura que esté detrás del logo */
         }
 
         .logo-hero-orb {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 70%;
+            height: 70%;
             border-radius: 50%;
             background: conic-gradient(var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-pink), var(--neon-blue));
             animation: rotate 3s linear infinite;
@@ -838,67 +953,79 @@
         }
 
         /* RESPONSIVE DESIGN MEJORADO */
-        @media (max-width: 768px) {
-            .logo-glow {
-                width: 70px;  /* Ajusta este valor también */
-                height: 70px;
+
+        @media (max-width: 1024px) {
+            .company-name {
+                font-size: 1.8rem;
             }
             
             .cyber-links {
-                gap: 15px;
+                gap: 3px;
             }
             
             .cyber-link {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .cyber-quote {
-                font-size: 0.8rem;
-                padding: 15px;
-            }
-            
-            .feedforward-hero {
-                padding: 60px 5% 40px;
-            }
-            
-            .feedforward-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 30px 5%;
-            }
-            
-            .logo-hero {
-                width: 180px;  /* Ajusta este valor también */
-                height: 180px;
-            }
-            .search-container {
-                max-width: 90%;
-            }
-            
-            .search-input {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
             
-            .search-description {
-                font-size: 0.8rem;
+            .search-mini-input {
+                width: 150px;
             }
-            }
-            
-            .logo-glow {
-                width: 45px;
-                height: 45px;
-            }
-            
+        }
+
+        @media (max-width: 768px) {
             .cyber-nav {
-                padding: 10px 5%;
+                flex-wrap: wrap;
+                padding: 15px 5%;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .company-name {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+            
+            .company-subtitle {
+                text-align: center;
+            }
+            
+            .header-search {
+                margin-left: 0;
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-mini {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .search-mini-input {
+                width: 100%;
+            }
+            
+            .cyber-links {
+                order: 4;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
             }
             
             .menu-toggle {
                 display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px;
             }
             
             .cyber-links {
@@ -925,6 +1052,49 @@
                 width: 100%;
                 margin: 5px 0;
             }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .company-name {
+                font-size: 1.4rem;
+            }
+            
+            .company-subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .cyber-quote {
+                font-size: 0.9rem;
+                padding: 15px;
+            }
+            
+            .feedforward-hero {
+                padding: 60px 5% 40px;
+            }
+            
+            .logo-hero-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .feedforward-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px 5%;
+            }
+            
+            .ff-card {
+                min-height: 300px;
+            }
+            
+            .ff-title {
+                font-size: 1.4rem;
+            }
             
             .bim-block, .training-block {
                 padding: 25px;
@@ -942,29 +1112,6 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .cyber-quote {
-                font-size: 0.8rem;
-            }
-            
-            .ff-card {
-                min-height: 300px;
-            }
-            
-            .ff-title {
-                font-size: 1.4rem;
-            }
-            
-            .bim-title, .training-title {
-                font-size: 1.5rem;
-            }
-            
-            .logo-hero {
-                width: 120px;
-                height: 120px;
-            }
-        }
-
         /* ANIMACIONES DE SCROLL */
         .ff-card, .training-block, .bim-block {
             opacity: 0;
@@ -975,6 +1122,24 @@
         .ff-card.visible, .training-block.visible, .bim-block.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% { 
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            50% { 
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0.8;
+            }
+            90% { opacity: 0.2; }
         }
     </style>
 </head>
@@ -996,25 +1161,40 @@
     <!-- Partículas de Energía -->
     <div class="energy-particles" id="energyParticles"></div>
 
-    <!-- Navegación Cyber - MEJORADA -->
+    <!-- Navegación Cyber - COMPLETAMENTE REDISEÑADA -->
     <nav class="cyber-nav">
         <div class="nav-container">
-            <div class="logo-container">
-                <div class="logo-orb"></div>
-                <img src="static/logo.png" alt="Decisiones Integradas" class="logo-glow">
+            <!-- LOGO Y NOMBRE DE LA EMPRESA -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="logo-container">
+                    <div class="logo-particles" id="logoParticles"></div>
+                    <img src="static/logo_2.png" alt="Decisiones Integradas" class="logo-glow">
+                </div>
             </div>
-            
+
+            <!-- BARRA DE BÚSQUEDA PEQUEÑA -->
+            <div class="header-search">
+                <div class="search-mini">
+                    <input type="text" placeholder="Buscar..." class="search-mini-input">
+                    <button class="search-mini-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- MENÚ HAMBURGUESA -->
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             
+            <!-- ENLACES DE NAVEGACIÓN -->
             <div class="cyber-links" id="cyberLinks">
                 <a href="#analitica" class="cyber-link">Analítica</a>
                 <a href="#bim" class="cyber-link">BIM</a>
-                <a href="#costos" class="cyber-link">Costos Ambientales</a>
-                <a href="#riesgos" class="cyber-link">Gestión de Riesgos</a>
+                <a href="#costos" class="cyber-link">Costos</a>
+                <a href="#riesgos" class="cyber-link">Riesgos</a>
                 <a href="#capacitacion" class="cyber-link">Capacitación</a>
                 <a href="#contacto" class="cyber-link">Contacto</a>
             </div>
@@ -1030,15 +1210,6 @@
         <div class="cyber-quote">
             "Miles han vivido sin amor, ninguno sin agua" – WH Auden
         </div>
-                <!-- Agrega esto dentro de la sección .feedforward-hero, después del .cyber-quote -->
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" placeholder="Buscar servicios, soluciones..." class="search-input">
-                <button class="search-button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
     </section>
 
     <!-- Grid Feedforward -->
@@ -1048,7 +1219,7 @@
             <div class="ff-header">
                 <i class="ff-icon fas fa-brain"></i>
                 <h2 class="ff-title">Analítica</h2>
-                <div class="ff-subtitle">BIM - Predictive Intelligence</div>
+                <div class="ff-subtitle">Predictive Intelligence</div>
             </div>
             <div class="ff-content">
                 <ul class="ff-list">
@@ -1075,7 +1246,7 @@
                     <li>Colaboración multidisciplinaria en tiempo real</li>
                     <li>Simulación y análisis de estructuras hídricas</li>
                 </ul>
-                <a href="/bim-construccion" class="ff-button">Ver Proyectos <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ url_for('/bim-acueductos') }}" class="ff-button">Ver Proyectos <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -1207,6 +1378,29 @@
             }
         }
         
+        function createLogoParticles() {
+            const container = document.getElementById('logoParticles');
+            const count = 12;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const angle = (i / count) * 360;
+                const distance = Math.random() * 30 + 10;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                particle.style.animationDelay = `${Math.random() * 4}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
         // Crear burbujas flotantes
         function createBubbles() {
             const container = document.getElementById('bubbles');
@@ -1269,6 +1463,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             createEnergyParticles();
             createBubbles();
+            createLogoParticles();
             checkScroll();
             setupMobileMenu();
             

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* VARIABLES AZULES SUAVES */
+        :root {
+            --primary-blue: #4a90e2;
+            --secondary-blue: #5fa8ff;
+            --light-blue: #87ceeb;
+            --aqua-blue: #7fdbff;
+            --deep-blue: #2c5aa0;
+            --dark-space: #0a1a35;
+            --cyber-gray: #1a2b4e;
+            --light-cyber: #2d3c5c;
+            --text-glow: 0 0 10px rgba(74, 144, 226, 0.5), 0 0 20px rgba(74, 144, 226, 0.3);
+            --box-glow: 0 0 15px var(--primary-blue), 0 0 30px rgba(74, 144, 226, 0.3);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            background: linear-gradient(135deg, #0a1a35 0%, #1a2b4e 50%, #2d3c5c 100%);
+        }
+
+        /* FONDO DE AGUA EN MOVIMIENTO - TEMA AZUL */
+        .water-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: linear-gradient(135deg, #0a1a35 0%, #1a2b4e 50%, #2d3c5c 100%);
+            overflow: hidden;
+        }
+
+        .water-layer {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(74, 144, 226, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(95, 168, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(127, 219, 255, 0.2) 0%, transparent 50%);
+            animation: waterFlow 20s infinite linear;
+            opacity: 0.6;
+        }
+
+        .water-layer:nth-child(2) {
+            animation-duration: 15s;
+            animation-direction: reverse;
+            opacity: 0.4;
+            background: 
+                radial-gradient(circle at 60% 40%, rgba(95, 168, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(127, 219, 255, 0.2) 0%, transparent 50%);
+        }
+
+        .water-layer:nth-child(3) {
+            animation-duration: 25s;
+            opacity: 0.3;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(95, 168, 255, 0.2) 0%, transparent 50%);
+        }
+
+        @keyframes waterFlow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(5%, 5%) rotate(1deg); }
+        }
+
+        /* NAVEGACIÓN */
+        .cyber-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(10, 26, 53, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--primary-blue);
+            box-shadow: 0 5px 30px rgba(74, 144, 226, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-glow {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            object-fit: contain;
+            border: 2px solid var(--primary-blue);
+            filter: drop-shadow(0 0 15px var(--primary-blue));
+            background: white;
+            padding: 5px;
+        }
+
+        .company-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title {
+            font-size: 0.9rem;
+            color: var(--light-blue);
+            font-weight: 300;
+        }
+
+        .cyber-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cyber-link {
+            text-decoration: none;
+            color: var(--light-blue);
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .cyber-link:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--box-glow);
+            background: rgba(74, 144, 226, 0.1);
+        }
+
+        /* HERO SECTION BIM */
+        .bim-hero {
+            text-align: center;
+            padding: 100px 5% 60px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 26, 53, 0.8), transparent);
+        }
+
+        .bim-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bim-main-title {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+        }
+
+        .bim-subtitle {
+            font-size: 1.4rem;
+            color: var(--light-blue);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* GRID DE CARACTERÍSTICAS */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 50px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(26, 43, 78, 0.8), rgba(45, 60, 92, 0.8));
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover:before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-blue);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-shadow: var(--text-glow);
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:before {
+            content: '▸';
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* SIMULADOR INTERACTIVO */
+        .simulator-section {
+            background: linear-gradient(135deg, rgba(10, 26, 53, 0.9), rgba(26, 43, 78, 0.9));
+            padding: 80px 5%;
+            margin: 50px 0;
+            border-top: 2px solid var(--primary-blue);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .simulator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .simulator-title {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 40px;
+        }
+
+        .simulator-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .simulator-controls {
+            background: rgba(26, 43, 78, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-blue);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .control-label {
+            display: block;
+            color: var(--light-blue);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-blue);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .simulate-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .simulate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .simulator-visual {
+            background: rgba(26, 43, 78, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-blue);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .water-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+            animation: flow 3s infinite linear;
+        }
+
+        @keyframes flow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* FOOTER */
+        .cyber-footer {
+            background: linear-gradient(135deg, rgba(10, 26, 53, 0.9), rgba(7, 20, 40, 0.9));
+            color: white;
+            padding: 50px 5% 30px;
+            text-align: center;
+            border-top: 1px solid var(--primary-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light-blue);
+        }
+
+        .cyber-copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(74, 144, 226, 0.2);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .bim-main-title {
+                font-size: 2.5rem;
+            }
+            
+            .simulator-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cyber-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo de Agua -->
+    <div class="water-bg">
+        <div class="water-layer"></div>
+        <div class="water-layer"></div>
+        <div class="water-layer"></div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="cyber-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="static/logo_2.png" alt="Decisiones Integradas" class="logo-glow">
+                <div class="company-title">
+                </div>
+            </div>
+            
+            <div class="cyber-links">
+                <a href="/" class="cyber-link">Inicio</a>
+                <a href="/bim-acueductos" class="cyber-link">BIM Acueductos</a>
+                <a href="/analitica-datos" class="cyber-link">Analítica</a>
+                <a href="#contacto" class="cyber-link">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bim-hero">
+        <div class="bim-hero-content">
+            <h1 class="bim-main-title">MODELADO BIM DE ACUEDUCTOS</h1>
+            <p class="bim-subtitle">Tecnología avanzada para el diseño, simulación y gestión inteligente de redes hidráulicas y sistemas de abastecimiento de agua</p>
+        </div>
+    </section>
+
+    <!-- Grid de Características -->
+    <div class="features-grid">
+        <!-- Modelado 3D -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-project-diagram"></i>
+            <h3 class="feature-title">Modelado 3D Inteligente</h3>
+            <p class="feature-description">Diseño detallado de redes de acueducto con información paramétrica avanzada.</p>
+            <ul class="feature-list">
+                <li>Modelado de tuberías y conexiones</li>
+                <li>Diseño de plantas de tratamiento</li>
+                <li>Optimización de rutas y trayectorias</li>
+                <li>Integración con GIS</li>
+            </ul>
+        </div>
+
+        <!-- Simulación Hidráulica -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-tint"></i>
+            <h3 class="feature-title">Simulación Hidráulica</h3>
+            <p class="feature-description">Análisis avanzado del comportamiento hidráulico en tiempo real.</p>
+            <ul class="feature-list">
+                <li>Cálculo de presiones y caudales</li>
+                <li>Análisis de pérdidas de carga</li>
+                <li>Simulación de escenarios críticos</li>
+                <li>Optimización energética</li>
+            </ul>
+        </div>
+
+        <!-- Gestión de Proyectos -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-chart-line"></i>
+            <h3 class="feature-title">Gestión Integral</h3>
+            <p class="feature-description">Control completo del ciclo de vida de proyectos de infraestructura hídrica.</p>
+            <ul class="feature-list">
+                <li>Planificación 4D y 5D</li>
+                <li>Gestión de costos y presupuestos</li>
+                <li>Control de avances y métricas</li>
+                <li>Reportes automatizados</li>
+            </ul>
+        </div>
+
+        <!-- Colaboración -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-users"></i>
+            <h3 class="feature-title">Colaboración en Tiempo Real</h3>
+            <p class="feature-description">Plataforma unificada para equipos multidisciplinarios.</p>
+            <ul class="feature-list">
+                <li>Compartición de modelos en la nube</li>
+                <li>Control de versiones</li>
+                <li>Comentarios y marcadores</li>
+                <li>Integración con BIM 360</li>
+            </ul>
+        </div>
+
+        <!-- Análisis de Datos -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-database"></i>
+            <h3 class="feature-title">Análisis Predictivo</h3>
+            <p class="feature-description">Inteligencia artificial aplicada a la gestión de recursos hídricos.</p>
+            <ul class="feature-list">
+                <li>Predicción de demanda</li>
+                <li>Detección de anomalías</li>
+                <li>Optimización de mantenimiento</li>
+                <li>Alertas inteligentes</li>
+            </ul>
+        </div>
+
+        <!-- Sostenibilidad -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-leaf"></i>
+            <h3 class="feature-title">Sostenibilidad Ambiental</h3>
+            <p class="feature-description">Enfoque ecológico en el diseño y operación de sistemas hídricos.</p>
+            <ul class="feature-list">
+                <li>Análisis de huella hídrica</li>
+                <li>Optimización de recursos</li>
+                <li>Evaluación de impacto ambiental</li>
+                <li>Certificaciones verdes</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Simulador Interactivo -->
+    <section class="simulator-section">
+        <div class="simulator-container">
+            <h2 class="simulator-title">SIMULADOR DE REDES HIDRÁULICAS</h2>
+            <div class="simulator-content">
+                <div class="simulator-controls">
+                    <div class="control-group">
+                        <label class="control-label">Diámetro de Tubería (mm)</label>
+                        <input type="range" class="control-input" min="50" max="500" value="200">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Longitud de Red (km)</label>
+                        <input type="number" class="control-input" value="5.2">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Caudal Requerido (l/s)</label>
+                        <input type="number" class="control-input" value="45">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Presión Mínima (psi)</label>
+                        <input type="number" class="control-input" value="30">
+                    </div>
+                    <button class="simulate-btn">EJECUTAR SIMULACIÓN</button>
+                </div>
+                <div class="simulator-visual">
+                    <div class="water-flow"></div>
+                    <div style="text-align: center;">
+                        <i class="fas fa-water" style="font-size: 4rem; color: var(--light-blue); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--light-blue);">SIMULACIÓN EN TIEMPO REAL</h3>
+                        <p>Visualización interactiva del flujo hidráulico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cyber-footer" id="contacto">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Decisiones Integradas V SAS</h3>
+                <p>Especialistas en BIM para infraestructura hídrica</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-phone"></i> +57 317 7507284</p>
+                <p><i class="fas fa-envelope"></i> decisionesintegradasvsas@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Servicios BIM</h3>
+                <p>Modelado de acueductos</p>
+                <p>Simulación hidráulica</p>
+                <p>Gestión de proyectos</p>
+            </div>
+        </div>
+        <div class="cyber-copyright">
+            © 2025 Decisiones Integradas V SAS | Tecnología BIM Avanzada
+        </div>
+    </footer>
+
+    <script>
+        // Efectos interactivos para el simulador
+        document.querySelector('.simulate-btn').addEventListener('click', function() {
+            const simulator = document.querySelector('.simulator-visual');
+            simulator.style.animation = 'pulse 0.5s';
+            
+            setTimeout(() => {
+                simulator.style.animation = '';
+                alert('Simulación completada. Resultados disponibles en el panel de control.');
+            }, 500);
+        });
+
+        // Animación de aparición al hacer scroll
+        function checkScroll() {
+            const elements = document.querySelectorAll('.feature-card');
+            
+            elements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        }
+
+        // Inicializar animaciones
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            checkScroll();
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
+
+

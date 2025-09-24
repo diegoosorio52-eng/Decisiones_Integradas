@@ -76,31 +76,12 @@ atexit.register(kill_ngrok_processes)
 def header():
     return render_template('header.html')
 
-######################################## CAPITULO 1  #########################################
+######################################## BIM ACUEDUCTOS #########################################
 
-@app.route('/capitulo1')
-def capitulo1():
-    return render_template('capitulo1.html')
+@app.route('/bim-acueductos')  # Ruta más simple
+def bim_acueductos():
+    return render_template('bim-acueductos.html')
 
-@app.route('/analitica-datos')
-def analitica_datos():
-    return render_template('analitica_datos.html')
-
-@app.route('/predicciones')
-def predicciones():
-    return render_template('predicciones.html')
-
-@app.route('/modelos')
-def modelos():
-    return render_template('modelos.html')
-
-@app.route('/alertas')
-def alertas():
-    return render_template('alertas.html')
-
-@app.route('/reportes')
-def reportes():
-    return render_template('reportes.html')
 
 if __name__ == "__main__":
     port = 5000
