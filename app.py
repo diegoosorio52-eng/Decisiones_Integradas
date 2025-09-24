@@ -1,6 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-from flask import Flask, render_template, request, redirect
 from pyngrok import ngrok
 import subprocess
 import csv
@@ -18,77 +17,83 @@ app = Flask(__name__)
 def kill_ngrok_processes():
     """Termina todos los procesos ngrok existentes"""
     try:
-        # Método para Windows
         subprocess.run(['taskkill', '/f', '/im', 'ngrok.exe'], 
                       capture_output=True, timeout=10)
         print("✅ Procesos ngrok terminados")
     except Exception as e:
         print(f"⚠️ Error terminando procesos: {e}")
     
-    # También usar el método de pyngrok
     try:
         ngrok.kill()
     except:
         pass
     
-    time.sleep(2)  # Esperar a que los procesos terminen
+    time.sleep(2)
 
 def setup_ngrok_tunnel(port=5000):
     """Configura el túnel ngrok de manera robusta"""
-    # Terminar procesos existentes primero
     kill_ngrok_processes()
-    
-    # Esperar un poco más
     time.sleep(3)
     
     try:
-        # Configurar ngrok para que no monitoree en segundo plano
         conf.get_default().monitor_thread = False
-        
-        # Conectar el túnel
         tunnel = ngrok.connect(port, bind_tls=True)
         print(f"✅ Túnel ngrok creado exitosamente")
         return tunnel
     except Exception as e:
         print(f"❌ Error creando túnel: {e}")
-        print("Intentando método alternativo...")
-        
-        # Intentar método más simple
         try:
             kill_ngrok_processes()
             time.sleep(3)
-            tunnel = ngrok.connect(port)  # Sin bind_tls
+            tunnel = ngrok.connect(port)
             print(f"✅ Túnel creado con método alternativo")
             return tunnel
         except Exception as e2:
             print(f"❌ Error crítico: {e2}")
-            print("💡 Ejecuta 'taskkill /f /im ngrok.exe' manualmente")
             return None
 
-# Registrar cleanup al salir
 atexit.register(kill_ngrok_processes)
 
 ###############################################################################################
-######################################## PROYECTO  #########################################
+######################################## RUTAS DEFINIDAS #########################################
 ###############################################################################################
 
 @app.route('/')
 def header():
     return render_template('header.html')
 
-######################################## BIM ACUEDUCTOS #########################################
-
-@app.route('/bim-acueductos')  # Ruta más simple
+# Ruta existente
+@app.route('/bim-acueductos')
 def bim_acueductos():
     return render_template('bim-acueductos.html')
 
+# NUEVAS RUTAS PARA LOS ENLACES QUE FALTAN
+@app.route('/analitica-datos')
+def analitica_datos():
+    return render_template('analitica-datos.html')
+
+@app.route('/costos-ambientales')
+def costos_ambientales():
+    return render_template('costos-ambientales.html')
+
+@app.route('/gestion-riesgos')
+def gestion_riesgos():
+    return render_template('gestion-riesgos.html')
+
+@app.route('/capacitacion')
+def capacitacion():
+    return render_template('capacitacion.html')
+
+# Ruta adicional que mencionó el error
+@app.route('/bim-construccion')
+def bim_construccion():
+    return render_template('bim-construccion.html')
 
 if __name__ == "__main__":
     port = 5000
 
     print("🚀 Iniciando servidor Flask con ngrok...")
     
-    # Configurar ngrok de manera robusta
     ngrok_tunnel = setup_ngrok_tunnel(port)
     
     if ngrok_tunnel:
@@ -98,5 +103,4 @@ if __name__ == "__main__":
         print("⚠️  No se pudo crear el túnel ngrok, ejecutando solo localmente")
         print("🌐 URL local: http://127.0.0.1:5000")
 
-    # Ejecutar Flask (debug=False para mejor compatibilidad con ngrok)
     app.run(host="0.0.0.0", port=port, debug=False)

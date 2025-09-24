@@ -203,6 +203,186 @@
             margin-right: auto;
         }
 
+        /* SECCIÓN DEFINICIÓN ACUEDUCTOS */
+        .definition-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, rgba(10, 26, 53, 0.9), rgba(26, 43, 78, 0.9));
+            margin: 50px 0;
+            border-top: 2px solid var(--primary-blue);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .definition-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .definition-title {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .definition-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .definition-text {
+            background: rgba(26, 43, 78, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-blue);
+        }
+
+        .definition-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .definition-visual {
+            background: rgba(26, 43, 78, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-blue);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aqueduct-animation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .pipe {
+            position: absolute;
+            width: 80%;
+            height: 20px;
+            background: linear-gradient(90deg, #4a90e2, #7fdbff);
+            border-radius: 10px;
+            top: 50%;
+            left: 10%;
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.7);
+        }
+
+        .water-droplet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--aqua-blue);
+            border-radius: 50%;
+            animation: dropletFlow 3s infinite linear;
+            box-shadow: 0 0 10px var(--aqua-blue);
+        }
+
+        .water-droplet:nth-child(2) {
+            animation-delay: 0.5s;
+            left: 20%;
+        }
+
+        .water-droplet:nth-child(3) {
+            animation-delay: 1s;
+            left: 40%;
+        }
+
+        .water-droplet:nth-child(4) {
+            animation-delay: 1.5s;
+            left: 60%;
+        }
+
+        .water-droplet:nth-child(5) {
+            animation-delay: 2s;
+            left: 80%;
+        }
+
+        @keyframes dropletFlow {
+            0% { transform: translateX(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(400px); opacity: 0; }
+        }
+
+        /* PARTES DEL ACUEDUCTO */
+        .parts-section {
+            padding: 80px 5%;
+        }
+
+        .parts-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .parts-title {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .part-card {
+            background: linear-gradient(145deg, rgba(26, 43, 78, 0.8), rgba(45, 60, 92, 0.8));
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .part-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .part-card:hover:before {
+            left: 100%;
+        }
+
+        .part-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-blue);
+        }
+
+        .part-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-shadow: var(--text-glow);
+        }
+
+        .part-title {
+            font-size: 1.6rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+
+        .part-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         /* GRID DE CARACTERÍSTICAS */
         .features-grid {
             display: grid;
@@ -421,7 +601,7 @@
                 font-size: 2.5rem;
             }
             
-            .simulator-content {
+            .definition-content, .simulator-content {
                 grid-template-columns: 1fr;
             }
             
@@ -429,7 +609,7 @@
                 display: none;
             }
             
-            .features-grid {
+            .features-grid, .parts-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -448,7 +628,6 @@
         <div class="nav-container">
             <div class="logo-container">
                 <img src="static/logo_2.png" alt="Decisiones Integradas" class="logo-glow">
-                <div class="company-title">
                 </div>
             </div>
             
@@ -466,6 +645,69 @@
         <div class="bim-hero-content">
             <h1 class="bim-main-title">MODELADO BIM DE ACUEDUCTOS</h1>
             <p class="bim-subtitle">Tecnología avanzada para el diseño, simulación y gestión inteligente de redes hidráulicas y sistemas de abastecimiento de agua</p>
+        </div>
+    </section>
+
+    <!-- Sección Definición de Acueductos -->
+    <section class="definition-section">
+        <div class="definition-container">
+            <h2 class="definition-title">¿QUÉ ES UN ACUEDUCTO?</h2>
+            <div class="definition-content">
+                <div class="definition-text">
+                    <p>Un acueducto es un sistema de conducción de agua diseñado para transportar el recurso hídrico desde su fuente de captación hasta los puntos de distribución y consumo.</p>
+                    <p>Los acueductos modernos integran tecnologías BIM (Building Information Modeling) que permiten el diseño paramétrico, la simulación hidráulica y la gestión integral del ciclo de vida de la infraestructura.</p>
+                    <p>Estos sistemas son esenciales para garantizar el suministro de agua potable a poblaciones, industrias y sectores agrícolas, optimizando recursos y minimizando impactos ambientales.</p>
+                </div>
+                <div class="definition-visual">
+                    <div class="aqueduct-animation">
+                        <div class="pipe"></div>
+                        <div class="water-droplet"></div>
+                        <div class="water-droplet"></div>
+                        <div class="water-droplet"></div>
+                        <div class="water-droplet"></div>
+                        <div class="water-droplet"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Partes del Acueducto -->
+    <section class="parts-section">
+        <div class="parts-container">
+            <h2 class="parts-title">PARTES FUNDAMENTALES DE UN ACUEDUCTO</h2>
+            <div class="parts-grid">
+                <div class="part-card">
+                    <i class="part-icon fas fa-water"></i>
+                    <h3 class="part-title">Fuente de Abastecimiento</h3>
+                    <p class="part-description">Ríos, embalses, pozos o manantiales que proveen el agua cruda para el sistema.</p>
+                </div>
+                <div class="part-card">
+                    <i class="part-icon fas fa-filter"></i>
+                    <h3 class="part-title">Planta de Tratamiento</h3>
+                    <p class="part-description">Instalaciones donde el agua cruda es purificada para cumplir con estándares de potabilidad.</p>
+                </div>
+                <div class="part-card">
+                    <i class="part-icon fas fa-tachometer-alt"></i>
+                    <h3 class="part-title">Estación de Bombeo</h3>
+                    <p class="part-description">Sistemas que impulsan el agua a través de la red cuando se requiere vencer desniveles topográficos.</p>
+                </div>
+                <div class="part-card">
+                    <i class="part-icon fas fa-project-diagram"></i>
+                    <h3 class="part-title">Red de Distribución</h3>
+                    <p class="part-description">Conjunto de tuberías, válvulas y accesorios que transportan el agua a los usuarios finales.</p>
+                </div>
+                <div class="part-card">
+                    <i class="part-icon fas fa-warehouse"></i>
+                    <h3 class="part-title">Tanques de Almacenamiento</h3>
+                    <p class="part-description">Estructuras que garantizan reservas de agua para cubrir demandas pico y situaciones de emergencia.</p>
+                </div>
+                <div class="part-card">
+                    <i class="part-icon fas fa-chart-bar"></i>
+                    <h3 class="part-title">Sistema de Control</h3>
+                    <p class="part-description">Tecnologías SCADA y BIM que monitorean y optimizan el funcionamiento del acueducto.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -624,7 +866,7 @@
 
         // Animación de aparición al hacer scroll
         function checkScroll() {
-            const elements = document.querySelectorAll('.feature-card');
+            const elements = document.querySelectorAll('.feature-card, .part-card');
             
             elements.forEach((element, index) => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -641,7 +883,7 @@
 
         // Inicializar animaciones
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.feature-card');
+            const cards = document.querySelectorAll('.feature-card, .part-card');
             cards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(50px)';
@@ -654,5 +896,3 @@
     </script>
 </body>
 </html>
-
-
