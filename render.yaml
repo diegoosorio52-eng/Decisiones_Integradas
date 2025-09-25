@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: tu-app-flask  # Cambia por el nombre que quieras
-    env: python
+    name: app  # Cambia por el nombre que quieras
+    env: venv
     plan: free
     region: ohio  # o virginia, oregon
     
@@ -24,4 +24,4 @@ services:
     
     # Configuración específica para Python
     python:
-      version: 3.11.4
+      version: 3.11.5
