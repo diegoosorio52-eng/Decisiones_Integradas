@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: tu-app-flask  # Cambia por el nombre que quieras
+    env: python
+    plan: free
+    region: ohio  # o virginia, oregon
+    
+    # Comandos de build y start
+    buildCommand: |
+      pip install -r requirements.txt
+      
+    startCommand: |
+      python app.py
+      
+    # Variables de entorno (si necesitas alguna)
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+      - key: RENDER
+        value: true
+        
+    # Health check path (IMPORTANTE)
+    healthCheckPath: /health
+    
+    # Configuración específica para Python
+    python:
+      version: 3.11.4
