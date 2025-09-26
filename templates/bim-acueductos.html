@@ -602,6 +602,78 @@
             border-color: var(--neon-blue);
         }
 
+        /* SECCIÓN DE FASES DEL ACUEDUCTO */
+        .acueducto-fases {
+            padding: 80px 5%;
+            background: rgba(10, 10, 31, 0.5);
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fases-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .fase-card {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fase-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+        }
+
+        .fase-icon {
+            font-size: 3rem;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            text-shadow: var(--text-glow);
+        }
+
+        .fase-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .fase-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .fase-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .fase-card:hover .fase-image {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+        }
+
         /* MODAL PARA IMÁGENES BIM */
         .bim-modal {
             display: none;
@@ -937,19 +1009,19 @@
                 font-size: 1.5rem;
             }
             
-            .process-grid {
+            .process-grid, .fases-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         /* ANIMACIONES DE SCROLL */
-        .flow-container, .process-card {
+        .flow-container, .process-card, .fase-card {
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        .flow-container.visible, .process-card.visible {
+        .flow-container.visible, .process-card.visible, .fase-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1023,8 +1095,8 @@
             <div class="cyber-links" id="cyberLinks">
                 <a href="/" class="cyber-link">Inicio</a>
                 <a href="#diagramas" class="cyber-link">Diagramas BIM</a>
+                <a href="#fases" class="cyber-link">Fases del Acueducto</a>
                 <a href="#proceso" class="cyber-link">Proceso</a>
-                <a href="#acueductos" class="cyber-link">Acueductos</a>
                 <a href="#contacto" class="cyber-link">Contacto</a>
             </div>
         </div>
@@ -1119,6 +1191,106 @@
         </div>
     </section>
 
+    <!-- Sección de Fases del Acueducto -->
+    <section class="acueducto-fases" id="fases">
+        <div class="fases-container">
+            <h2 class="section-title">FASES DEL ACUEDUCTO - VISIÓN 2030</h2>
+            <p class="bim-subtitle" style="text-align: center; margin-bottom: 40px;">Sistema integral de gestión del agua mediante tecnología BIM avanzada</p>
+            
+            <div class="fases-grid">
+                <!-- Fase 1: Pretratamiento -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-filter"></i>
+                    <h3 class="fase-title">Pretratamiento</h3>
+                    <img src=src="https://via.placeholder.com/400x250/001122/00f3ff?text=Pretratamiento+BIM" alt="Diagrama de flujo: Pretratamiento" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/00f3ff?text=Pretratamiento+Full">
+                    <p class="fase-description">Sistemas avanzados de cribado y desbaste con tecnología de sensores IoT para monitoreo en tiempo real.</p>
+                    <ul class="flow-features">
+                        <li>Rejas automatizadas con IA</li>
+                        <li>Desarenadores inteligentes</li>
+                        <li>Monitoreo de calidad del agua</li>
+                        <li>Predicción de mantenimiento</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Modelo BIM</a>
+                </div>
+                
+                <!-- Fase 2: Tratamiento -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-recycle"></i>
+                    <h3 class="fase-title">Tratamiento</h3>
+                    <img src="https://via.placeholder.com/400x250/001122/00ff9d?text=Tratamiento+BIM" alt="Diagrama de flujo: Tratamiento" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/00ff9d?text=Tratamiento+Full">
+                    <p class="fase-description">Procesos de coagulación, floculación, sedimentación y filtración optimizados mediante algoritmos predictivos.</p>
+                    <ul class="flow-features">
+                        <li>Reactores biológicos avanzados</li>
+                        <li>Filtros de membrana automatizados</li>
+                        <li>Desinfección con UV inteligente</li>
+                        <li>Control automático de dosificación</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Modelo BIM</a>
+                </div>
+                
+                <!-- Fase 3: Almacenamiento -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-water"></i>
+                    <h3 class="fase-title">Almacenamiento</h3>
+                    <img src="https://via.placeholder.com/400x250/001122/b967ff?text=Almacenamiento+BIM" alt="Diagrama de flujo: Almacenamiento" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/b967ff?text=Almacenamiento+Full">
+                    <p class="fase-description">Tanques y reservorios inteligentes con sistemas de gestión automatizada y monitoreo remoto.</p>
+                    <ul class="flow-features">
+                        <li>Tanques elevados sensorizados</li>
+                        <li>Reservorios subterráneos con BIM</li>
+                        <li>Control de niveles automático</li>
+                        <li>Gestión predictiva de capacidad</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Modelo BIM</a>
+                </div>
+                
+                <!-- Fase 4: Distribución -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-project-diagram"></i>
+                    <h3 class="fase-title">Distribución</h3>
+                    <img src="https://via.placeholder.com/400x250/001122/ff2a6d?text=Distribución+BIM" alt="Diagrama de flujo: Distribución" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/ff2a6d?text=Distribución+Full">
+                    <p class="fase-description">Redes de distribución optimizadas con modelado hidráulico avanzado y gestión de presión inteligente.</p>
+                    <ul class="flow-features">
+                        <li>Redes de tuberías inteligentes</li>
+                        <li>Válvulas de control automatizadas</li>
+                        <li>Monitoreo de presión en tiempo real</li>
+                        <li>Detección automática de fugas</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Modelo BIM</a>
+                </div>
+                
+                <!-- Fase 5: Operación y Mantenimiento -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-cogs"></i>
+                    <h3 class="fase-title">Operación y Mantenimiento</h3>
+                    <img src="https://via.placeholder.com/400x250/001122/00f3ff?text=Operación+BIM" alt="Diagrama de flujo: Operación y Mantenimiento" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/00f3ff?text=Operación+Full">
+                    <p class="fase-description">Plataforma integral de gestión operativa con mantenimiento predictivo y realidad aumentada.</p>
+                    <ul class="flow-features">
+                        <li>Dashboard de operaciones en tiempo real</li>
+                        <li>Mantenimiento predictivo con IA</li>
+                        <li>Realidad aumentada para intervenciones</li>
+                        <li>Gestión de activos digitales</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Plataforma</a>
+                </div>
+                
+                <!-- Fase 6: Monitoreo y Control -->
+                <div class="fase-card">
+                    <i class="fase-icon fas fa-chart-bar"></i>
+                    <h3 class="fase-title">Monitoreo y Control</h3>
+                    <img src="https://via.placeholder.com/400x250/001122/00ff9d?text=Monitoreo+BIM" alt="Diagrama de flujo: Monitoreo y Control" class="fase-image" data-full="https://via.placeholder.com/1200x800/001122/00ff9d?text=Monitoreo+Full">
+                    <p class="fase-description">Sistema centralizado de monitoreo con analítica avanzada y toma de decisiones asistida por IA.</p>
+                    <ul class="flow-features">
+                        <li>Centro de control inteligente</li>
+                        <li>Analítica predictiva de consumo</li>
+                        <li>Alertas automáticas de anomalías</li>
+                        <li>Reportes automatizados</li>
+                    </ul>
+                    <a href="#" class="bim-button">Ver Sistema</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección de Proceso BIM -->
     <section class="bim-process" id="proceso">
         <div class="process-container">
@@ -1170,21 +1342,39 @@
             <div class="footer-section">
                 <h3>Decisiones Integradas V SAS</h3>
                 <p>Especialistas en BIM para infraestructura hídrica</p>
+                <p>Visión 2030: Acueductos Inteligentes</p>
             </div>
             <div class="footer-section">
                 <h3>Contacto</h3>
                 <p><i class="fas fa-phone"></i> +57 317 7507284</p>
                 <p><i class="fas fa-envelope"></i> decisionesintegradasvsas@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Colombia</p>
             </div>
             <div class="footer-section">
                 <h3>Servicios BIM</h3>
-                <p>Modelado de acueductos</p>
-                <p>Simulación hidráulica</p>
-                <p>Gestión de proyectos</p>
+                <a href="#diagramas">Diagramas de Flujo BIM</a>
+                <a href="#fases">Fases del Acueducto</a>
+                <a href="#proceso">Procesos Integrales</a>
+                <a href="#">Modelado 3D Avanzado</a>
+            </div>
+            <div class="footer-section">
+                <h3>Tecnologías 2030</h3>
+                <p>IA para gestión del agua</p>
+                <p>IoT y sensores inteligentes</p>
+                <p>Realidad Aumentada</p>
+                <p>Analítica predictiva</p>
             </div>
         </div>
+        
+        <div class="cyber-social">
+            <a href="#" class="social-cyber"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-cyber"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-cyber"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-cyber"><i class="fab fa-github"></i></a>
+        </div>
+        
         <div class="cyber-copyright">
-            © 2025 Decisiones Integradas V SAS | Tecnología BIM Avanzada
+            © 2025 Decisiones Integradas V SAS | Tecnología BIM Avanzada para Acueductos del Futuro
         </div>
     </footer>
 
@@ -1245,15 +1435,16 @@
             document.getElementById('cyberLinks').classList.toggle('active');
         });
 
-        // Modal para imágenes BIM
+        // Modal para imágenes BIM (incluye las nuevas imágenes de fases)
         const modal = document.getElementById('bimModal');
         const modalImg = document.getElementById('modalImage');
         const closeModal = document.getElementById('closeModal');
         
-        document.querySelectorAll('.flow-image').forEach(img => {
+        // Agregar event listeners a todas las imágenes con clase flow-image y fase-image
+        document.querySelectorAll('.flow-image, .fase-image').forEach(img => {
             img.addEventListener('click', function() {
                 modal.style.display = 'flex';
-                modalImg.src = this.getAttribute('data-full');
+                modalImg.src = this.getAttribute('data-full') || this.src;
             });
         });
         
@@ -1269,7 +1460,7 @@
 
         // Animación de aparición al hacer scroll
         function checkScroll() {
-            const elements = document.querySelectorAll('.flow-container, .process-card');
+            const elements = document.querySelectorAll('.flow-container, .process-card, .fase-card');
             
             elements.forEach((element, index) => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1283,14 +1474,81 @@
             });
         }
 
+        // Efecto de escritura futurista para el título principal
+        function typeWriterEffect() {
+            const title = document.querySelector('.bim-main-title');
+            if (!title) return;
+            
+            const text = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                }
+            }
+            
+            // Iniciar efecto después de un breve retraso
+            setTimeout(type, 1000);
+        }
+
         // Inicializar efectos y animaciones
         document.addEventListener('DOMContentLoaded', function() {
             createLogoParticles();
             createBubbles();
             createEnergyParticles();
+            typeWriterEffect();
             
             checkScroll();
             window.addEventListener('scroll', checkScroll);
+            
+            // Efecto de partículas adicional para las tarjetas de fases
+            document.querySelectorAll('.fase-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const particles = document.createElement('div');
+                    particles.style.position = 'absolute';
+                    particles.style.top = '0';
+                    particles.style.left = '0';
+                    particles.style.width = '100%';
+                    particles.style.height = '100%';
+                    particles.style.pointerEvents = 'none';
+                    particles.style.zIndex = '1';
+                    particles.style.overflow = 'hidden';
+                    particles.style.borderRadius = '15px';
+                    
+                    for (let i = 0; i < 5; i++) {
+                        const particle = document.createElement('div');
+                        particle.style.position = 'absolute';
+                        particle.style.width = '4px';
+                        particle.style.height = '4px';
+                        particle.style.background = 'var(--neon-blue)';
+                        particle.style.borderRadius = '50%';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.top = Math.random() * 100 + '%';
+                        particle.style.animation = `particleFloat 2s ease-out ${i * 0.2}s forwards`;
+                        particles.appendChild(particle);
+                    }
+                    
+                    this.appendChild(particles);
+                    
+                    setTimeout(() => {
+                        if (this.contains(particles)) {
+                            this.removeChild(particles);
+                        }
+                    }, 2000);
+                });
+            });
+        });
+
+        // Efecto de sonido futurista al interactuar (opcional)
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('bim-button') || e.target.classList.contains('cyber-link')) {
+                // Aquí podrías agregar un sonido futurista si lo deseas
+                console.log('Interacción futurista detectada');
+            }
         });
     </script>
 </body>
