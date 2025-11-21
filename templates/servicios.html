@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ===================================================== -->
+<!-- GRID PRINCIPAL - FEEDFORWARD -->
+<!-- ===================================================== -->
+<div class="feedforward-grid">
+
+
+    <!-- ===================================================== -->
+    <!-- Analítica -->
+    <!-- ===================================================== -->
+    <div class="ff-card" id="analitica">
+
+        <div class="ff-header">
+            <i class="ff-icon fas fa-brain"></i>
+            <h2 class="ff-title">Analítica & SIG</h2>
+            <div class="ff-subtitle">Predictive Intelligence</div>
+        </div>
+
+        <div class="ff-content">
+            <ul class="ff-list">
+                <li>Modelado avanzado de información geoespacial</li>
+                <li>Integración de datos en tiempo real con SIG</li>
+                <li>Visualización 3D holográfica y mapas interactivos</li>
+                <li>Análisis predictivo con IA y analítica espacial</li>
+            </ul>
+
+            <a href="/analitica-datos" class="ff-button">
+                Acceder al Sistema <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- BIM -->
+    <!-- ===================================================== -->
+    <div class="ff-card" id="bim">
+
+        <div class="ff-header">
+            <i class="ff-icon fas fa-cube"></i>
+            <h2 class="ff-title">BIM</h2>
+            <div class="ff-subtitle">Building Information Modeling</div>
+        </div>
+
+        <div class="ff-content">
+            <ul class="ff-list">
+                <li>Modelado 3D inteligente</li>
+                <li>Gestión del ciclo de vida</li>
+                <li>Colaboración multidisciplinaria</li>
+                <li>Simulación de estructuras hídricas</li>
+            </ul>
+
+            <a href="{{ url_for('bim_acueductos') }}" class="ff-button">
+                Ver Proyectos <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- Costos Ambientales -->
+    <!-- ===================================================== -->
+    <div class="ff-card" id="costos">
+
+        <div class="ff-header">
+            <i class="ff-icon fas fa-leaf"></i>
+            <h2 class="ff-title">Costos Ambientales</h2>
+            <div class="ff-subtitle">Eco-Economic Analysis</div>
+        </div>
+
+        <div class="ff-content">
+            <ul class="ff-list">
+                <li>Análisis de impacto ambiental</li>
+                <li>Evaluación económica de recursos</li>
+                <li>Indicadores de sostenibilidad</li>
+                <li>Optimización de costos ecológicos</li>
+            </ul>
+
+            <a href="/costos-ambientales" class="ff-button">
+                Ver Análisis <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- Gestión de Riesgos -->
+    <!-- ===================================================== -->
+    <div class="ff-card" id="riesgos">
+
+        <div class="ff-header">
+            <i class="ff-icon fas fa-shield-alt"></i>
+            <h2 class="ff-title">Gestión de Riesgos</h2>
+            <div class="ff-subtitle">Threat Intelligence</div>
+        </div>
+
+        <div class="ff-content">
+            <ul class="ff-list">
+                <li>Identificación de amenazas hídricas</li>
+                <li>Planificación preventiva avanzada</li>
+                <li>Respuesta a emergencias</li>
+                <li>Monitoreo continuo de riesgos</li>
+            </ul>
+
+            <a href="/gestion-riesgos" class="ff-button">
+                Gestionar Riesgos <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- Capacitación -->
+    <!-- ===================================================== -->
+    <div class="training-block" id="capacitacion">
+
+        <div class="training-header">
+            <i class="training-icon fas fa-graduation-cap"></i>
+            <h2 class="training-title">Capacitación & Formación</h2>
+        </div>
+
+        <div class="training-content">
+
+            <div class="training-item">
+                <h4><i class="fas fa-vr-cardboard"></i> Cursos Virtuales</h4>
+                <p>Formación especializada inmersiva.</p>
+            </div>
+
+            <div class="training-item">
+                <h4><i class="fas fa-chalkboard-teacher"></i> Workshops Presenciales</h4>
+                <p>Sesiones prácticas con expertos.</p>
+            </div>
+
+            <div class="training-item">
+                <h4><i class="fas fa-certificate"></i> Certificaciones</h4>
+                <p>Programas reconocidos internacionalmente.</p>
+            </div>
+
+            <div class="training-item">
+                <h4><i class="fas fa-hands-helping"></i> Consultoría</h4>
+                <p>Asesoramiento personalizado.</p>
+            </div>
+
+        </div>
+
+        <a href="/capacitacion" class="ff-button"
+           style="margin-top: 25px; background: linear-gradient(135deg, var(--neon-green), #00cc88);">
+            Ver Programas de Capacitación <i class="fas fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+{% endblock %}
