@@ -510,10 +510,12 @@
         /* CUADROS FEEDFORWARD */
         .feedforward-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px 5%;
-            perspective: 1000px;
+            grid-template-columns: repeat(4, 1fr);  /* Fuerza 4 columnas */
+            gap: 25px;
+            width: 100%;
+            max-width: 1350px;     /* Ajustado para que quepan las 4 */
+            margin: 0 auto;
+            padding: 20px 10px;
         }
 
         .ff-card {
@@ -1202,4 +1204,282 @@
         font-size: 40px;
         background: #f0f0f0;
         border-bottom: 1px solid #ccc;
+        }
+
+        
+
+        /* Paleta sugerida */
+        :root {
+        --bg-dark: #0a1f3c;
+        --bg-dark-2: #0d2a4f;
+        --primary: #00c2ff;
+        --primary-100: #b8ecff;
+        --text-100: #ffffff;
+        --text-900: #0f172a;
+        --muted: #475569;
+        --card-bg: #ffffff;
+        --soft: #f7f9fc;
+        --border: #e5e7eb;
+        }
+
+        .hero-about {
+        background: radial-gradient(1000px 500px at 10% 10%, rgba(0, 194, 255, 0.12), transparent),
+                    linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
+        color: var(--text-100);
+        padding: 72px 0 56px;
+        border-bottom: 2px solid rgba(0, 194, 255, 0.35);
+        }
+        .hero-about .title-about {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        margin-bottom: 16px;
+        }
+        .hero-about .subtitle-about {
+        font-size: clamp(1rem, 1.3vw, 1.125rem);
+        line-height: 1.8;
+        max-width: 980px;
+        margin: 0 auto;
+        color: #e6f7ff;
+        }
+
+        .section.about-section {
+        padding: 48px 0;
+        background: #fff;
+        }
+        .section.about-section.highlight {
+        background: var(--soft);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        }
+
+        .block-title {
+        font-size: clamp(1.5rem, 2.6vw, 2rem);
+        color: var(--bg-dark);
+        margin-bottom: 14px;
+        font-weight: 700;
+        }
+        .block-text {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.75;
+        }
+
+        /* Tarjetas informativas */
+        .card-block {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 24px;
+        box-shadow: 0 6px 18px rgba(10, 31, 60, 0.06);
+        }
+
+        /* Grid de servicios */
+        .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        margin-top: 8px;
+        }
+        .service-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px;
+        transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .service-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px rgba(10, 31, 60, 0.08);
+        border-color: rgba(0, 194, 255, 0.35);
+        }
+        .service-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #e8f8ff, #f7fbff);
+        color: var(--bg-dark-2);
+        font-size: 20px;
+        }
+        .service-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--bg-dark);
+        }
+        .service-text {
+        color: var(--muted);
+        font-size: 0.975rem;
+        line-height: 1.6;
+        }
+
+        /* Propuesta de valor */
+        .value-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin-top: 10px;
+        }
+        .value-item {
+        background: #fff;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        }
+        .value-icon {
+        font-size: 1.1rem;
+        }
+
+        /* CTA final */
+        .final-cta .cta-wrap {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+        }
+        .btn-primary {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #003548;
+        }
+        .btn-primary:hover {
+        background: #00a8df;
+        border-color: #00a8df;
+        }
+        .btn-outline-primary {
+        color: var(--primary);
+        border-color: var(--primary);
+        }
+        .btn-outline-primary:hover {
+        background: var(--primary-100);
+        border-color: var(--primary);
+        }
+
+        /* Animación de entrada opcional */
+        .fade-up {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        }
+
+        /* Responsivo menor */
+        @media (max-width: 576px) {
+        .hero-about { padding: 60px 0 40px; }
+        .final-cta .cta-wrap { flex-direction: column; }
+        }
+
+        /* ====== HERO SECTION ====== */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* HERO */
+        .hero-about {
+            background-image: url('/static/images/agua_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+        }
+        .hero-overlay {
+            background: rgba(0,0,0,0.55);
+            padding: 6rem 1rem;
+        }
+        .title-main {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .subtitle {
+            max-width: 900px;
+            margin: auto;
+            font-size: 1.25rem;
+        }
+
+        /* TEXTOS */
+        .text-justify {
+            text-align: justify;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: #1e2d34;
+        }
+
+        /* SECCIONES */
+        .block {
+            padding: 4rem 1rem;
+        }
+        .section-light {
+            background: #f4f7f8;
+        }
+        .section-white {
+            background: #ffffff;
+        }
+        .section-water {
+            background-image: url('/static/images/agua_section.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .water-overlay {
+            background: rgba(0, 54, 81, 0.65);
+            padding: 4rem 1rem;
+        }
+
+        /* TITULOS */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f4c5c;
+        }
+        .section-water .section-title {
+            color: #ffffff;
+        }
+
+        /* GRID LISTAS */
+        .list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .list-item {
+            background: #ffffff;
+            border-left: 6px solid #0f4c5c;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* PROPUESTA DE VALOR */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .value-item {
+            background: rgba(255,255,255,0.90);
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.05rem;
+        }
+
+        /* PROPÓSITO */
+        .big-paragraph {
+            max-width: 850px;
+            margin: auto;
+            font-size: 1.25rem;
+            line-height: 1.7;
         }

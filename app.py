@@ -103,6 +103,30 @@ def health_check():
 def bim_acueductos():
     return render_template('bim-acueductos.html')
 
+@app.route("/ingenieria-acueductos")
+def ingenieria_acueductos():
+    return render_template("ingenieria-acueductos.html")
+
+@app.route("/analitica")
+def analitica():
+    return render_template("analitica.html")
+
+@app.route("/ambiental-riesgos")
+def ambiental_riesgos():
+    return render_template("ambiental-riesgos.html")
+
+@app.route("/consultoria-proyectos")
+def consultoria_proyectos():
+    return render_template("consultoria-proyectos.html")
+
+@app.route("/capacitacion")
+def capacitacion():
+    return render_template("capacitacion.html")
+
+@app.route("/mantenimiento-pozos-profundos")
+def mantenimiento_pozos():
+    return render_template("mantenimiento-pozos-profundos.html")
+
 
 # ----------------------------------------------------------
 # FUNCIÓN KEEP-ALIVE PARA RENDER

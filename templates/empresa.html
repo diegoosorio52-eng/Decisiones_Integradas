@@ -1,6 +1,78 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>Quiénes Somos</h1>
-<p>Contenido próximamente.</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<!-- HERO con fondo agua -->
+<section class="hero-about">
+  <div class="hero-overlay">
+    <div class="container text-center">
+      <h1 class="title-main">Quiénes Somos</h1>
+      <p class="subtitle">
+        En Decisiones Integradas V SAS somos una empresa orientada a la gestión inteligente del agua y al fortalecimiento técnico-operativo de los sistemas de acueducto, saneamiento y servicios asociados.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGEN -->
+<section class="block section-light">
+  <div class="container">
+    <h2 class="section-title">De dónde nace nuestra propuesta</h2>
+    <p class="text-justify">
+      Decisiones Integradas V SAS surge como una iniciativa que combina experiencia técnica, formación especializada en supervisión de sistemas de agua y saneamiento, y un enfoque estratégico en innovación. Nuestro trabajo se fundamenta en la articulación de tecnologías emergentes, normativas vigentes (RAS, NSR-10, normas de calidad de agua) y la comprensión de los contextos urbanos y rurales.
+    </p>
+  </div>
+</section>
+
+<!-- QUÉ HACEMOS -->
+<section class="block section-white">
+  <div class="container">
+    <h2 class="section-title">Qué hacemos</h2>
+    <p class="text-justify">
+      Desarrollamos soluciones integrales que permiten diagnosticar, optimizar, operar y proyectar sistemas hídricos y procesos ambientales, integrando herramientas de ingeniería, información geográfica, analítica avanzada e inteligencia artificial.
+    </p>
+
+    <h3 class="subsection-title mt-4">Nuestro alcance incluye:</h3>
+
+    <div class="list-grid">
+      <div class="list-item">Diagnóstico y verificación técnica de sistemas de agua potable y saneamiento</div>
+      <div class="list-item">Modelación hidráulica y simulación de redes</div>
+      <div class="list-item">Control de calidad del agua y toma de muestras</div>
+      <div class="list-item">Evaluación de filtros, plantas y estructuras</div>
+      <div class="list-item">Acompañamiento técnico y cumplimiento normativo</div>
+      <div class="list-item">Implementación de sistemas de información y tableros analíticos</div>
+      <div class="list-item">Gestión de riesgos operativos y ambientales</div>
+      <div class="list-item">Capacitación técnica para personal operativo y administrativo</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA DE VALOR -->
+<section class="block section-water">
+  <div class="water-overlay">
+    <div class="container">
+      <h2 class="section-title text-white">Nuestra Propuesta de Valor</h2>
+
+      <div class="value-grid">
+        <div class="value-item">Decisiones basadas en datos, ingeniería y evidencia técnica</div>
+        <div class="value-item">Soluciones integrales, combinando operación, análisis y tecnología</div>
+        <div class="value-item">Acompañamiento a entidades públicas y privadas con enfoque de mejora continua</div>
+        <div class="value-item">Servicios orientados a la normativa y buenas prácticas del sector agua</div>
+        <div class="value-item">Soporte técnico confiable para zonas urbanas y rurales</div>
+        <div class="value-item">Integración de Analítica, SIG, IA y modelos hidráulicos en campo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPÓSITO -->
+<section class="block section-white">
+  <div class="container text-center">
+    <h2 class="section-title">Nuestro Propósito</h2>
+    <p class="big-paragraph text-justify">
+      Aportar al fortalecimiento del sector agua mediante soluciones técnicas, tecnológicas y formativas que permitan mejorar la calidad del servicio, garantizar el cumplimiento normativo y proteger la salud pública.
+    </p>
+  </div>
+</section>
+
 {% endblock %}
