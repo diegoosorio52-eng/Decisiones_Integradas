@@ -1,89 +1,147 @@
-
 {% extends "base.html" %}
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename======== -->
-<section class="hero-about">
-  <!-- ===== Opción A: Video de fondo ===== -->
-  <!-- Activa esta opción añadiendo el archivo en /static/video/water-loop.mp4 y una imagen poster -->
-  <video class="hero-video" autoplay muted loop playsinline poster="{{ url_for('static', filename='img/hero-poster.jpg') }}">
-    <sourcefor(
-    <!-- Fallback: si el video no carga, el CSS usa un background-image -->
-  </video>
 
-  <div class="hero-overlay">
-    <div class="container text-center">
-      <h1 class="title-main anim-fade-up">Innovación para el Agua del Futuro</h1>
-      <p class="subtitle anim-fade-up anim-delay-1">
-        Tecnología y sostenibilidad para enfrentar el cambio climático.
+<!-- ===================== QUIÉNES SOMOS ===================== -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - Decisiones Integradas V SAS</title>
+
+    <!-- ===================== QUIÉNES SOMOS ===================== -->
+    <section class="about-water block">
+        <div class="about-wrapper">
+
+            <!-- Contenido principal -->
+            <div class="about-content anim-fade-in">
+                <h2 class="about-title">
+                    <span class="highlight">Quiénes Somos</span><br>
+                    Decisiones Integradas V SAS
+                </h2>
+
+                <p class="about-text">
+                    En <strong>Decisiones Integradas V SAS</strong> transformamos la gestión del agua mediante
+                    soluciones que integran <strong>tecnología</strong>, <strong>sostenibilidad</strong> y una visión
+                    estratégica para enfrentar los desafíos actuales del recurso hídrico.
+                </p>
+
+                <p class="about-text">
+                    Apostamos por herramientas digitales avanzadas, modelos de análisis y enfoques técnicos
+                    que fortalecen la eficiencia, permiten anticipar riesgos y garantizan la operación confiable
+                    de los sistemas de agua potable y saneamiento.
+                </p>
+
+                <p class="about-text">
+                    Nuestro compromiso es claro: <strong>elevar la calidad del servicio, mejorar la toma de decisiones
+                    y proteger el recurso hídrico</strong> mediante soluciones inteligentes y acompañamiento continuo.
+                </p>
+            </div>
+
+            <!-- Forma abstracta -->
+            <div class="about-shape anim-slide-in">
+                <div class="abstract-water"></div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+<!-- ===================== QUÉ HACEMOS ===================== -->
+<section class="block section-white">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Qué hacemos</h2>
+      <p class="section-lead">
+        Soluciones integrales para diagnosticar, optimizar, operar y proyectar sistemas hídricos, integrando ingeniería, SIG, analítica avanzada e inteligencia artificial.
       </p>
-      <div class="hero-cta anim-fade-up anim-delay-2">
-        <a hreftConoce nuestra propuesta</a>
-        /servicesNuestros servicios</a>
-      </div>
+    </div>
 
-      <!-- ===== Opción B: Slider con frases/métricas rotativas ===== -->
-      <!-- Si no quieres esta opción, elimina el bloque .hero-rotator -->
-      <div class="hero-rotator anim-fade-up anim-delay-3" id="hero-rotator">
-        <div class="rotator-item">
-          <i class="fa-solid fa-droplet"></i>
-          <span>“El agua es vida. En 2050 será nuestro mayor desafío.”</span>
-        </div>
-        <div class="rotator-item">
-          <i class="fa-solid fa-microchip"></i>
-          <span>Tecnología para garantizar agua segura frente al cambio climático.</span>
-        </div>
-        <div class="rotator-item">
-          <i class="fa-solid fa-earth-americas"></i>
-          <span>Innovación hídrica para un futuro resiliente y sostenible.</span>
-        </div>
-      </div>
+    <div class="cards-grid">
+      <!-- Tarjetas -->
+      <article class="card anim-slide-up">
+        <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
+        <h3 class="card-title">Diagnóstico Técnico</h3>
+        <p class="card-text">Verificación de sistemas de agua potable y saneamiento; auditorías de operación y cumplimiento.</p>
+      </article>
 
-      <!-- ===== Opción C: Gráficos circulares (métricas 2050) ===== -->
-      <!-- Sustituye por tus cifras y deja que el JS anime los círculos -->
-      <div class="hero-metrics anim-fade-up anim-delay-3">
-        <div class="metric">
-          <svg viewBox="0 0 120 120">
-            <circle class="bg" cx="60" cy="60" r="50"/>
-            <circle class="fg" cx="60" cy="60" r="50" data-percent="55"/>
-          </svg>
-          <div class="metric-text">
-            <strong>55%</strong>
-            <span>Mayor demanda de agua para 2050</span>
-          </div>
-        </div>
-        <div class="metric">
-          <svg viewBox="0 0 120 120">
-            <circle class="bg" cx="60" cy="60" r="50"/>
-            <circle class="fg" cx="60" cy="60" r="50" data-percent="25"/>
-          </svg>
-          <div class="metric-text">
-            <strong>1 de 4</strong>
-            <span>Vivirá en zonas con estrés hídrico</span>
-          </div>
-        </div>
-        <div class="metric">
-          <svg viewBox="0 0 120 120">
-            <circle class="bg" cx="60" cy="60" r="50"/>
-            <circle class="fg" cx="60" cy="60" r="50" data-percent="20"/>
-          </svg>
-          <div class="metric-text">
-            <strong>+20%</strong>
-            <span>Eventos extremos por cambio climático</span>
-          </div>
-        </div>
+      <article class="card anim-slide-up anim-delay-1">
+        <div class="card-icon"><i class="fa-solid fa-project-diagram"></i></div>
+        <h3 class="card-title">Modelación Hidráulica</h3>
+        <p class="card-text">Simulación de redes y escenarios con modelos para toma de decisiones basada en evidencia.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-2">
+        <div class="card-icon"><i class="fa-solid fa-vial"></i></div>
+        <h3 class="card-title">Calidad del Agua</h3>
+        <p class="card-text">Muestreo, análisis y protocolos de control para asegurar estándares y salud pública.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-3">
+        <div class="card-icon"><i class="fa-solid fa-industry"></i></div>
+        <h3 class="card-title">Plantas y Estructuras</h3>
+        <p class="card-text">Evaluación de filtros, PTAP/PTS, eficiencias y mejoras operacionales.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-4">
+        <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3 class="card-title">Normativa y Compliance</h3>
+        <p class="card-text">Acompañamiento técnico para cumplimiento del RAS, NSR-10 y buenas prácticas.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-5">
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="card-title">Analítica y Tableros</h3>
+        <p class="card-text">Sistemas de información, dashboards y trazabilidad de indicadores.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-6">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="card-title">Gestión de Riesgos</h3>
+        <p class="card-text">Planes de contingencia y mitigación operativa y ambiental.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-7">
+        <div class="card-icon"><i class="fa-solid fa-person-chalkboard"></i></div>
+        <h3 class="card-title">Capacitación</h3>
+        <p class="card-text">Formación para personal operativo y administrativo con enfoque práctico.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROPUESTA DE VALOR ===================== -->
+<section class="block section-water">
+  <div class="water-overlay">
+    <div class="container">
+      <h2 class="section-title text-white">Nuestra Propuesta de Valor</h2>
+      <div class="value-grid">
+        <div class="value-item"><i class="fa-solid fa-database"></i> Decisiones basadas en datos e ingeniería</div>
+        <div class="value-item"><i class="fa-solid fa-layer-group"></i> Soluciones integrales: operación + análisis + tecnología</div>
+        <div class="value-item"><i class="fa-solid fa-handshake"></i> Acompañamiento público y privado con mejora continua</div>
+        <div class="value-item"><i class="fa-solid fa-scale-balanced"></i> Cumplimiento normativo y buenas prácticas</div>
+        <div class="value-item"><i class="fa-solid fa-map-location-dot"></i> Soporte confiable en zonas urbanas y rurales</div>
+        <div class="value-item"><i class="fa-solid fa-brain"></i> Integración de Analítica, SIG, IA y modelos en campo</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== CONTENIDO SIGUIENTE ===================== -->
-<section class="block section-light">
-  <div class="container">
-    <h2 class="section-title">De dónde nace nuestra propuesta</h2>
-    <p class="text-justify">
-      Nacimos con una misión clara: convertir la experiencia técnica y la innovación en soluciones que fortalezcan los sistemas de agua y saneamiento. Combinamos conocimiento, tecnología y compromiso para responder a los retos urbanos y rurales.
+<!-- ===================== PROPÓSITO ===================== -->
+<section class="block section-white">
+  <div class="container text-center">
+    <h2 class="section-title">Nuestro Propósito</h2>
+    <p class="big-paragraph text-justify">
+      Fortalecer el sector agua con soluciones técnicas, tecnológicas y formativas que mejoren la calidad del servicio, garanticen el cumplimiento normativo y protejan la salud pública.
     </p>
+    <div class="section-cta">
+      /contactAgendar reunión</a>
+    </div>
   </div>
 </section>
+
+{{ url_for('static', filename='animations/hero.js')}}
 
 {% endblock %}

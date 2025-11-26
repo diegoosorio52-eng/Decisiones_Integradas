@@ -98,8 +98,50 @@ a { text-decoration: none; }
 }
 .water-overlay { padding: 60px 0; }
 
-.section-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 34px); }
-.section-lead { font-size: 18px; color: var(--text-dim); }
+
+/* Fuente moderna */
+body {
+  font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+/* Título principal */
+.section-title {
+  font-size: 2.4rem; /* más grande y llamativo */
+  font-weight: 700;
+  color: #00f0ff; /* cian futurista */
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  margin-bottom: 1rem;
+}
+
+/* Subtítulo o lead */
+.section-lead {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #eafcff;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Párrafos descriptivos */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f0f8ff;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .section-lead,
+  .about-text {
+    font-size: 1rem;
+  }
+}
+
 
 /* ===================== Cards ===================== */
 .cards-grid {
@@ -287,7 +329,7 @@ p{line-height:1.7; margin:0 0 16px;}
 }
 
 .hero-video {
-  width: 90%;           
+  width: 60%;           
   max-width: 600px;     
   height: auto;         
   display: block;
@@ -335,4 +377,420 @@ p{line-height:1.7; margin:0 0 16px;}
   background-color: rgba(0, 0, 0, 0.4); /* Negro con 40% transparencia */
   padding: 20px;
   border-radius: 8px;
+}
+
+/* ===================== QUIÉNES SOMOS ===================== */
+.about-water {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+/* Fondo con partículas y luz */
+.about-water::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.15), transparent),
+              radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.15), transparent);
+  animation: moveBg 10s infinite alternate ease-in-out;
+  z-index: 0;
+}
+@keyframes moveBg {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, -30px); }
+}
+
+.about-wrapper {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Glassmorphism */
+.about-content {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+.about-content:hover {
+  transform: scale(1.03);
+}
+
+/* Título con efecto neón animado */
+.about-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+.about-title .highlight {
+  background: linear-gradient(90deg, #00f0ff, #00ff9d, #00f0ff);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  animation: shine 3s infinite linear;
+}
+@keyframes shine {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* Texto con contraste y glow */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  color: #eafcff;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+/* Forma abstracta con morphing y glow */
+.about-shape {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.abstract-water {
+  width: 100%;
+  height: 420px;
+  background: radial-gradient(circle at 30% 30%, #00f0ff, #009ffd);
+  border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%;
+  animation: morph 9s infinite alternate ease-in-out, glow 3s infinite ease-in-out;
+}
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
+  100% { border-radius: 58% 42% 33% 67% / 55% 53% 47% 45%; }
+}
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 10px 45px rgba(0, 255, 255, 0.4)); }
+  50% { filter: drop-shadow(0 10px 70px rgba(0, 255, 255, 0.8)); }
+}
+
+/* Animaciones de entrada */
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+.anim-slide-in {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideIn 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .abstract-water {
+    height: 300px;
+    margin: 2rem auto;
+  }
+}
+
+
+/* ===================== ANIMACIONES ===================== */
+
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.anim-slide-in {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideIn 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 900px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: justify;
+  }
+
+  .abstract-water {
+    height: 300px;
+    margin: 2rem auto;
+  }
+}
+
+
+
+/* ===================== QUIÉNES SOMOS ===================== */
+.about-water {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+/* Fondo con partículas y luz */
+.about-water::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.15), transparent),
+              radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.15), transparent);
+  animation: moveBg 10s infinite alternate ease-in-out;
+  z-index: 0;
+}
+@keyframes moveBg {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, -30px); }
+}
+
+.about-wrapper {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Glassmorphism */
+.about-content {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+.about-content:hover {
+  transform: scale(1.03);
+}
+
+/* Título con efecto neón animado */
+.about-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+.about-title .highlight {
+  background: linear-gradient(90deg, #00f0ff, #00ff9d, #00f0ff);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  animation: shine 3s infinite linear;
+}
+@keyframes shine {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* Texto con contraste y glow */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  color: #eafcff;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+/* Forma abstracta con morphing y glow */
+.about-shape {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.abstract-water {
+  width: 100%;
+  height: 420px;
+  background: radial-gradient(circle at 30% 30%, #00f0ff, #009ffd);
+  border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%;
+  animation: morph 9s infinite alternate ease-in-out, glow 3s infinite ease-in-out;
+}
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
+  100% { border-radius: 58% 42% 33% 67% / 55% 53% 47% 45%; }
+}
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 10px 45px rgba(0, 255, 255, 0.4)); }
+  50% { filter: drop-shadow(0 10px 70px rgba(0, 255, 255, 0.8)); }
+}
+
+/* Animaciones de entrada */
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+.anim-slide-in {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideIn 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .abstract-water {
+    height: 300px;
+    margin: 2rem auto;
+  }
+}
+
+
+/* Fuente moderna */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fondo con gradiente animado */
+.section-gradient {
+  position: relative;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #eafcff;
+  overflow: hidden;
+}
+
+.section-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent),
+              radial-gradient(circle at 80% 80%, rgba(0,255,157,0.15), transparent);
+  animation: moveBg 10s infinite alternate ease-in-out;
+  z-index: 0;
+}
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(30px,-30px); }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: justify;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Título con efecto neon */
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(0,255,255,0.7);
+}
+
+/* Subtítulo */
+.section-lead {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #eafcff;
+}
+
+/* Párrafos con íconos */
+.about-text-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #f0f8ff;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.about-text-block i {
+  color: #00f0ff;
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+
+/* Botón futurista */
+.btn-glow {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #00f0ff;
+  color: #0f2027;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+  transition: all 0.3s ease;
+}
+.btn-glow:hover {
+  background: #00ff9d;
+  box-shadow: 0 0 30px rgba(0,255,157,0.8);
+}
+
+/* Animación de entrada */
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease forwards;
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
 }

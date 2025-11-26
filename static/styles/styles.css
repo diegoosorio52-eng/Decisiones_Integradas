@@ -478,34 +478,51 @@
             left: 0;
         }
 
- 
+        /* Estilo para la cita principal */
         .cyber-quote {
-            font-size: 1rem;       /* tamaño del texto */
-            line-height: 0.5;      /* reduce la distancia entre líneas */
-            font-style: italic;
-            max-width: 500px;
-            margin: 0 auto 5px;
-            padding: 20px;
-            border-left: 4px solid var(--neon-green);
-            background: rgba(0, 255, 157, 0.05);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            color: cyan;           /* si quieres mantener el cambio anterior */
+            font-size: 1rem;              /* Tamaño del texto (1rem = tamaño base del documento) */
+            line-height: 0.5;             /* Altura de línea (espacio entre renglones). 0.5 es muy comprimido */
+            font-style: italic;           /* Texto en cursiva */
+            max-width: 500px;             /* Ancho máximo del bloque */
+            margin: 0 auto 10px;           /* Margen: 0 arriba, auto centrado horizontal, 5px abajo */
+            padding: 20px;                /* Espacio interno alrededor del texto */
+            border-left: 4px solid var(--neon-green); /* Línea vertical a la izquierda con color verde neón */
+            background: rgba(115, 61, 6, 0.05); /* Fondo translúcido con tono verde */
+            border-radius: 10px;          /* Bordes redondeados */
+            position: relative;           /* Necesario para posicionar el pseudo-elemento :before */
+            overflow: hidden;             /* Oculta contenido que se salga del contenedor */
+            color: cyan;                  /* Color del texto (cian) */
         }
 
+        /* Variante más grande y espaciosa */
+        .cyber-quote1 {
+            font-size: 1.5rem;            /* Texto más grande */
+            line-height: 1.8;             /* Más espacio entre líneas (ideal para legibilidad) */
+            font-style: italic;           /* Texto en cursiva */
+            max-width: 1500px;            /* Ancho máximo mucho mayor */
+            margin: 0 auto 20px;          /* Margen inferior más amplio */
+            padding: 20px;                /* Espacio interno */
+            border-left: 4px solid var(--neon-green); /* Línea decorativa a la izquierda */
+            background: rgba(0, 255, 157, 0.05); /* Fondo translúcido verde */
+            border-radius: 10px;          /* Bordes redondeados */
+            position: relative;           /* Para usar pseudo-elementos */
+            overflow: hidden;             /* Oculta contenido fuera del contenedor */
+            color: #00bfff;               /* Azul agua (Deep Sky Blue) */
+        }
 
-
+        /* Efecto animado tipo escaneo sobre la cita */
         .cyber-quote:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            content: '';                  /* Crea un pseudo-elemento vacío */
+            position: absolute;           /* Posiciona sobre el contenedor */
+            top: 0;                       /* Alineado arriba */
+            left: -100%;                  /* Comienza fuera del contenedor a la izquierda */
+            width: 100%;                  /* Ocupa todo el ancho del contenedor */
+            height: 100%;                 /* Ocupa todo el alto del contenedor */
             background: linear-gradient(90deg, transparent, rgba(229, 235, 232, 0.1), transparent);
-            animation: scanLine 3s linear infinite;
+                                        /* Gradiente para simular línea de escaneo */
+            animation: scanLine 3s linear infinite; /* Animación continua de desplazamiento */
         }
+
 
         @keyframes scanLine {
             0% { left: -100%; }
