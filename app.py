@@ -127,6 +127,9 @@ def capacitacion():
 def mantenimiento_pozos():
     return render_template("mantenimiento-pozos-profundos.html")
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 # ----------------------------------------------------------
 # FUNCIÓN KEEP-ALIVE PARA RENDER

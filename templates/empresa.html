@@ -1,78 +1,109 @@
 {% extends "base.html" %}
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 
-<!-- HERO con fondo agua -->
-<section class="hero-about">
-  <div class="hero-overlay">
-    <div class="container text-center">
-      <h1 class="title-main">Quiénes Somos</h1>
-      <p class="subtitle">
-        En Decisiones Integradas V SAS somos una empresa orientada a la gestión inteligente del agua y al fortalecimiento técnico-operativo de los sistemas de acueducto, saneamiento y servicios asociados.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ORIGEN -->
+<!-- ===================== CONTENIDO SIGUIENTE ===================== -->
 <section class="block section-light">
   <div class="container">
     <h2 class="section-title">De dónde nace nuestra propuesta</h2>
     <p class="text-justify">
-      Decisiones Integradas V SAS surge como una iniciativa que combina experiencia técnica, formación especializada en supervisión de sistemas de agua y saneamiento, y un enfoque estratégico en innovación. Nuestro trabajo se fundamenta en la articulación de tecnologías emergentes, normativas vigentes (RAS, NSR-10, normas de calidad de agua) y la comprensión de los contextos urbanos y rurales.
+      Nacimos con una misión clara: convertir la experiencia técnica y la innovación en soluciones que fortalezcan los sistemas de agua y saneamiento. Combinamos conocimiento, tecnología y compromiso para responder a los retos urbanos y rurales.
     </p>
   </div>
 </section>
 
-<!-- QUÉ HACEMOS -->
+<!-- ===================== QUÉ HACEMOS ===================== -->
 <section class="block section-white">
   <div class="container">
-    <h2 class="section-title">Qué hacemos</h2>
-    <p class="text-justify">
-      Desarrollamos soluciones integrales que permiten diagnosticar, optimizar, operar y proyectar sistemas hídricos y procesos ambientales, integrando herramientas de ingeniería, información geográfica, analítica avanzada e inteligencia artificial.
-    </p>
+    <div class="section-head">
+      <h2 class="section-title">Qué hacemos</h2>
+      <p class="section-lead">
+        Soluciones integrales para diagnosticar, optimizar, operar y proyectar sistemas hídricos, integrando ingeniería, SIG, analítica avanzada e inteligencia artificial.
+      </p>
+    </div>
 
-    <h3 class="subsection-title mt-4">Nuestro alcance incluye:</h3>
+    <div class="cards-grid">
+      <!-- Tarjetas -->
+      <article class="card anim-slide-up">
+        <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
+        <h3 class="card-title">Diagnóstico Técnico</h3>
+        <p class="card-text">Verificación de sistemas de agua potable y saneamiento; auditorías de operación y cumplimiento.</p>
+      </article>
 
-    <div class="list-grid">
-      <div class="list-item">Diagnóstico y verificación técnica de sistemas de agua potable y saneamiento</div>
-      <div class="list-item">Modelación hidráulica y simulación de redes</div>
-      <div class="list-item">Control de calidad del agua y toma de muestras</div>
-      <div class="list-item">Evaluación de filtros, plantas y estructuras</div>
-      <div class="list-item">Acompañamiento técnico y cumplimiento normativo</div>
-      <div class="list-item">Implementación de sistemas de información y tableros analíticos</div>
-      <div class="list-item">Gestión de riesgos operativos y ambientales</div>
-      <div class="list-item">Capacitación técnica para personal operativo y administrativo</div>
+      <article class="card anim-slide-up anim-delay-1">
+        <div class="card-icon"><i class="fa-solid fa-project-diagram"></i></div>
+        <h3 class="card-title">Modelación Hidráulica</h3>
+        <p class="card-text">Simulación de redes y escenarios con modelos para toma de decisiones basada en evidencia.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-2">
+        <div class="card-icon"><i class="fa-solid fa-vial"></i></div>
+        <h3 class="card-title">Calidad del Agua</h3>
+        <p class="card-text">Muestreo, análisis y protocolos de control para asegurar estándares y salud pública.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-3">
+        <div class="card-icon"><i class="fa-solid fa-industry"></i></div>
+        <h3 class="card-title">Plantas y Estructuras</h3>
+        <p class="card-text">Evaluación de filtros, PTAP/PTS, eficiencias y mejoras operacionales.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-4">
+        <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3 class="card-title">Normativa y Compliance</h3>
+        <p class="card-text">Acompañamiento técnico para cumplimiento del RAS, NSR-10 y buenas prácticas.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-5">
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="card-title">Analítica y Tableros</h3>
+        <p class="card-text">Sistemas de información, dashboards y trazabilidad de indicadores.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-6">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="card-title">Gestión de Riesgos</h3>
+        <p class="card-text">Planes de contingencia y mitigación operativa y ambiental.</p>
+      </article>
+
+      <article class="card anim-slide-up anim-delay-7">
+        <div class="card-icon"><i class="fa-solid fa-person-chalkboard"></i></div>
+        <h3 class="card-title">Capacitación</h3>
+        <p class="card-text">Formación para personal operativo y administrativo con enfoque práctico.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- PROPUESTA DE VALOR -->
+<!-- ===================== PROPUESTA DE VALOR ===================== -->
 <section class="block section-water">
   <div class="water-overlay">
     <div class="container">
       <h2 class="section-title text-white">Nuestra Propuesta de Valor</h2>
-
       <div class="value-grid">
-        <div class="value-item">Decisiones basadas en datos, ingeniería y evidencia técnica</div>
-        <div class="value-item">Soluciones integrales, combinando operación, análisis y tecnología</div>
-        <div class="value-item">Acompañamiento a entidades públicas y privadas con enfoque de mejora continua</div>
-        <div class="value-item">Servicios orientados a la normativa y buenas prácticas del sector agua</div>
-        <div class="value-item">Soporte técnico confiable para zonas urbanas y rurales</div>
-        <div class="value-item">Integración de Analítica, SIG, IA y modelos hidráulicos en campo</div>
+        <div class="value-item"><i class="fa-solid fa-database"></i> Decisiones basadas en datos e ingeniería</div>
+        <div class="value-item"><i class="fa-solid fa-layer-group"></i> Soluciones integrales: operación + análisis + tecnología</div>
+        <div class="value-item"><i class="fa-solid fa-handshake"></i> Acompañamiento público y privado con mejora continua</div>
+        <div class="value-item"><i class="fa-solid fa-scale-balanced"></i> Cumplimiento normativo y buenas prácticas</div>
+        <div class="value-item"><i class="fa-solid fa-map-location-dot"></i> Soporte confiable en zonas urbanas y rurales</div>
+        <div class="value-item"><i class="fa-solid fa-brain"></i> Integración de Analítica, SIG, IA y modelos en campo</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROPÓSITO -->
+<!-- ===================== PROPÓSITO ===================== -->
 <section class="block section-white">
   <div class="container text-center">
     <h2 class="section-title">Nuestro Propósito</h2>
     <p class="big-paragraph text-justify">
-      Aportar al fortalecimiento del sector agua mediante soluciones técnicas, tecnológicas y formativas que permitan mejorar la calidad del servicio, garantizar el cumplimiento normativo y proteger la salud pública.
+      Fortalecer el sector agua con soluciones técnicas, tecnológicas y formativas que mejoren la calidad del servicio, garanticen el cumplimiento normativo y protejan la salud pública.
     </p>
+    <div class="section-cta">
+      /contactAgendar reunión</a>
+    </div>
   </div>
 </section>
+
+{{ url_for('static', filename='animations/hero.js')}}
 
 {% endblock %}

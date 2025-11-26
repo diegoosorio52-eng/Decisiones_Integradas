@@ -1,0 +1,89 @@
+
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename======== -->
+<section class="hero-about">
+  <!-- ===== Opción A: Video de fondo ===== -->
+  <!-- Activa esta opción añadiendo el archivo en /static/video/water-loop.mp4 y una imagen poster -->
+  <video class="hero-video" autoplay muted loop playsinline poster="{{ url_for('static', filename='img/hero-poster.jpg') }}">
+    <sourcefor(
+    <!-- Fallback: si el video no carga, el CSS usa un background-image -->
+  </video>
+
+  <div class="hero-overlay">
+    <div class="container text-center">
+      <h1 class="title-main anim-fade-up">Innovación para el Agua del Futuro</h1>
+      <p class="subtitle anim-fade-up anim-delay-1">
+        Tecnología y sostenibilidad para enfrentar el cambio climático.
+      </p>
+      <div class="hero-cta anim-fade-up anim-delay-2">
+        <a hreftConoce nuestra propuesta</a>
+        /servicesNuestros servicios</a>
+      </div>
+
+      <!-- ===== Opción B: Slider con frases/métricas rotativas ===== -->
+      <!-- Si no quieres esta opción, elimina el bloque .hero-rotator -->
+      <div class="hero-rotator anim-fade-up anim-delay-3" id="hero-rotator">
+        <div class="rotator-item">
+          <i class="fa-solid fa-droplet"></i>
+          <span>“El agua es vida. En 2050 será nuestro mayor desafío.”</span>
+        </div>
+        <div class="rotator-item">
+          <i class="fa-solid fa-microchip"></i>
+          <span>Tecnología para garantizar agua segura frente al cambio climático.</span>
+        </div>
+        <div class="rotator-item">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span>Innovación hídrica para un futuro resiliente y sostenible.</span>
+        </div>
+      </div>
+
+      <!-- ===== Opción C: Gráficos circulares (métricas 2050) ===== -->
+      <!-- Sustituye por tus cifras y deja que el JS anime los círculos -->
+      <div class="hero-metrics anim-fade-up anim-delay-3">
+        <div class="metric">
+          <svg viewBox="0 0 120 120">
+            <circle class="bg" cx="60" cy="60" r="50"/>
+            <circle class="fg" cx="60" cy="60" r="50" data-percent="55"/>
+          </svg>
+          <div class="metric-text">
+            <strong>55%</strong>
+            <span>Mayor demanda de agua para 2050</span>
+          </div>
+        </div>
+        <div class="metric">
+          <svg viewBox="0 0 120 120">
+            <circle class="bg" cx="60" cy="60" r="50"/>
+            <circle class="fg" cx="60" cy="60" r="50" data-percent="25"/>
+          </svg>
+          <div class="metric-text">
+            <strong>1 de 4</strong>
+            <span>Vivirá en zonas con estrés hídrico</span>
+          </div>
+        </div>
+        <div class="metric">
+          <svg viewBox="0 0 120 120">
+            <circle class="bg" cx="60" cy="60" r="50"/>
+            <circle class="fg" cx="60" cy="60" r="50" data-percent="20"/>
+          </svg>
+          <div class="metric-text">
+            <strong>+20%</strong>
+            <span>Eventos extremos por cambio climático</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTENIDO SIGUIENTE ===================== -->
+<section class="block section-light">
+  <div class="container">
+    <h2 class="section-title">De dónde nace nuestra propuesta</h2>
+    <p class="text-justify">
+      Nacimos con una misión clara: convertir la experiencia técnica y la innovación en soluciones que fortalezcan los sistemas de agua y saneamiento. Combinamos conocimiento, tecnología y compromiso para responder a los retos urbanos y rurales.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

@@ -7,7 +7,6 @@
 <section class="feedforward-hero">
     <div class="logo-hero-container">
         <div class="logo-hero-orb"></div>
-
         <img src="{{ url_for('static', filename='logo.png') }}" 
              class="logo-hero">
     </div>
@@ -18,6 +17,45 @@
 </section>
 
 
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero-about">
+  <div class="hero-overlay">
+    <div class="container text-center">
+      <h1 class="title-main anim-fade-up">Transformamos la Gestión del Agua</h1>
+      <p class="subtitle anim-fade-up anim-delay-1">
+        Desarrollamos soluciones inteligentes que integran tecnología y sostenibilidad para enfrentar los desafíos del cambio climático
+      </p>
+
+      <div class="hero-stats anim-fade-up anim-delay-3">
+        <div class="stat">
+          <span class="stat-number">55%</span>
+          <span class="stat-label">Mayor demanda global de agua potable para 2050</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">1 de 4</span>
+          <span class="stat-label">Personas vivirá en zonas con estrés hídrico</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">+20%</span>
+          <span class="stat-label">Incremento en eventos extremos por cambio climático</span>
+        </div>
+      </div>
+
+<!-- ===================== IMAGEN CENTRO ===================== -->
+
+      <section class="hero-about">
+        <video class="hero-video" autoplay muted loop playsinline poster="/static/GestionAgua.png">
+          /static/video/water-loop.mp4
+        </video>
+        <div class="hero-overlay">
+          <div class="container text-center">
+            <h1 class="title-main anim-fade-up">Tecnología y sostenibilidad para enfrentar el cambio climático</h1>
+            </p>
+          </div>
+        </div>
+      </section>
 
 
 </div> <!-- End feedforward-grid -->

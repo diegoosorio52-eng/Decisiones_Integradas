@@ -478,18 +478,23 @@
             left: 0;
         }
 
+ 
         .cyber-quote {
-            font-size: 1.0rem;
+            font-size: 1rem;       /* tamaño del texto */
+            line-height: 0.5;      /* reduce la distancia entre líneas */
             font-style: italic;
-            max-width: 800px;
-            margin: 0 auto 40px;
+            max-width: 500px;
+            margin: 0 auto 5px;
             padding: 20px;
             border-left: 4px solid var(--neon-green);
             background: rgba(0, 255, 157, 0.05);
             border-radius: 10px;
             position: relative;
             overflow: hidden;
+            color: cyan;           /* si quieres mantener el cambio anterior */
         }
+
+
 
         .cyber-quote:before {
             content: '';
@@ -498,7 +503,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(229, 235, 232, 0.1), transparent);
             animation: scanLine 3s linear infinite;
         }
 
@@ -1483,3 +1488,6 @@
             font-size: 1.25rem;
             line-height: 1.7;
         }
+
+
+        
