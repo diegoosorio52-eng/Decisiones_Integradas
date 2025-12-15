@@ -481,10 +481,10 @@
         /* Estilo para la cita principal */
         .cyber-quote {
             font-size: 1rem;              /* Tamaño del texto (1rem = tamaño base del documento) */
-            line-height: 0.5;             /* Altura de línea (espacio entre renglones). 0.5 es muy comprimido */
+            line-height: 1.5;             /* Altura de línea (espacio entre renglones). 0.5 es muy comprimido */
             font-style: italic;           /* Texto en cursiva */
             max-width: 500px;             /* Ancho máximo del bloque */
-            margin: 0 auto 10px;           /* Margen: 0 arriba, auto centrado horizontal, 5px abajo */
+            margin: 0 auto 20px;           /* Margen: 0 arriba, auto centrado horizontal, 5px abajo */
             padding: 20px;                /* Espacio interno alrededor del texto */
             border-left: 4px solid var(--neon-green); /* Línea vertical a la izquierda con color verde neón */
             background: rgba(115, 61, 6, 0.05); /* Fondo translúcido con tono verde */
