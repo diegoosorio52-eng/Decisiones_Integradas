@@ -1,23 +1,625 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="service-page">
-    <h1 class="service-title">Asesoría & Consultoría Técnica</h1>
+{# --- Elimina estos 3 si ya están en base.html --- #}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <p class="service-description">
-        Consultoría especializada para la formulación, evaluación y optimización de proyectos de ingeniería y sistemas hídricos.
-    </p>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
 
-    <div class="service-section">
-        <h3>Ámbitos de Consultoría</h3>
-        <ul>
-            <li>Consultoría especializada en proyectos hídricos</li>
-            <li>Optimización de sistemas existentes</li>
-            <li>Estudios técnicos, diagnósticos y diseños detallados</li>
-            <li>Interventoría y acompañamiento técnico</li>
-            <li>Estructuración y formulación de proyectos</li>
-        </ul>
+  /* Chart: alturas fluidas por breakpoint */
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    max-height: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 640px) { .chart-container { height: 320px; } }  /* sm */
+  @media (min-width: 768px) { .chart-container { height: 380px; } }  /* md */
+
+  .filter-btn-active { background-color: #111827; color: #fff; border-color: #111827; }
+  .interactive-card { transition: all 0.3s ease; }
+  .interactive-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+
+  .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+  .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+</style>
+
+<!-- NAV -->
+<nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-14 sm:h-16">
+      <div class="flex items-center">
+        <span class="text-xl sm:text-2xl mr-2">⚓</span>
+        <span class="font-bold text-slate-800 tracking-tight text-sm sm:text-base">
+          Estrategia Fluvial <span class="text-amber-600">Minera</span>
+        </span>
+      </div>
+
+      <!-- Hamburguesa -->
+      <button id="btn-mobile" aria-label="Abrir menú" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <svg id="icon-open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Menú desktop -->
+      <div class="hidden md:flex space-x-4 lg:space-x-8 items-center">
+        <button onclick="scrollToSection('hero')" class="text-slate-600 hover:text-slate-900 px-2 lg:px-3 py-2 text-sm font-medium">Inicio</button>
+        <button onclick="scrollToSection('concepts')" class="text-slate-600 hover:text-slate-900 px-2 lg:px-3 py-2 text-sm font-medium">Conceptos</button>
+        <button onclick="scrollToSection('regulations')" class="text-slate-600 hover:text-slate-900 px-2 lg:px-3 py-2 text-sm font-medium">Normativa</button>
+        <button onclick="scrollToSection('risks')" class="text-slate-600 hover:text-slate-900 px-2 lg:px-3 py-2 text-sm font-medium">Riesgos & PBIP</button>
+        <button onclick="scrollToSection('diagnostic')" class="bg-slate-900 text-white hover:bg-slate-800 px-3 lg:px-4 py-2 rounded-md text-sm font-medium shadow-lg">Herramienta</button>
+      </div>
     </div>
-</section>
+
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 pb-3">
+      <div class="flex flex-col py-2">
+        <button onclick="scrollToSection('hero');toggleMenu(false)" class="px-4 py-3 text-left text-slate-700 hover:bg-slate-50">Inicio</button>
+        <button onclick="scrollToSection('concepts');toggleMenu(false)" class="px-4 py-3 text-left text-slate-700 hover:bg-slate-50">Conceptos</button>
+        <button onclick="scrollToSection('regulations');toggleMenu(false)" class="px-4 py-3 text-left text-slate-700 hover:bg-slate-50">Normativa</button>
+        <button onclick="scrollToSection('risks');toggleMenu(false)" class="px-4 py-3 text-left text-slate-700 hover:bg-slate-50">Riesgos & PBIP</button>
+        <button onclick="scrollToSection('diagnostic');toggleMenu(false)" class="mx-4 my-2 bg-slate-900 text-white hover:bg-slate-800 px-4 py-3 rounded-md text-sm font-medium shadow">Herramienta Diagnóstica</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-grow">
+  <!-- HERO -->
+  <section id="hero" class="relative bg-slate-900 text-white py-16 sm:py-20 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 opacity-20" 
+         style="background-image: radial-gradient(#4f46e5 1px, transparent 1px); background-size: 36px 36px;">
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+
+      <!-- Título pequeño, discreto, en blanco -->
+     
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 leading-tight text-white">
+        Consejo Colombiano de Seguridad <span class="text-green-500">CSS</span>
+      </h1>
+
+            <!-- Título pequeño, discreto, en blanco -->
+      <h1 class="text-sm sm:text-base md:text-lg font-light text-white tracking-wide mb-2">
+        Seguridad y Protección <span class="text-indigo-300">Minero‑Fluvial</span>
+      </h1>
+
+      <!-- Subtítulo / descripción -->
+      <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+        Plataforma interactiva para la gestión de riesgos (Safety/Security) y planes de contingencia en la cadena de suministro fluvial.
+      </p>
+
+      <!-- Botones -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <button onclick="scrollToSection('risks')" 
+                class="bg-indigo-500 hover:bg-indigo-600 px-6 sm:px-8 py-3 rounded-xl font-bold shadow-lg">
+          Analizar Riesgos
+        </button>
+
+        <button onclick="scrollToSection('contingency')" 
+                class="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-6 sm:px-8 py-3 rounded-xl font-bold">
+          Ver Contingencia
+        </button>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+  <!-- CONCEPTS -->
+  <section id="concepts" class="py-12 sm:py-14 md:py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8 sm:mb-10 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Distinción Crítica: Safety vs. Security</h2>
+        <p class="mt-3 sm:mt-4 text-slate-600 max-w-3xl mx-auto text-sm sm:text-base">
+          Para liderar en seguridad fluvial, es imperativo trascender la noción genérica. Entender la diferencia etimológica y práctica evita fallas de planificación estratégica.
+          <br><span class="text-xs sm:text-sm italic text-slate-500">Toque las tarjetas para ver el enfoque.</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+        <!-- Safety Card -->
+        <div id="safety-card" class="bg-white rounded-xl shadow-lg border-l-8 border-green-500 p-6 sm:p-8 cursor-pointer interactive-card" onclick="highlightCard('safety')">
+          <div class="flex justify-between items-center mb-3 sm:mb-4">
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Safety (Operativa)</h3>
+            <span class="text-3xl sm:text-4xl">⛑️</span>
+          </div>
+          <p class="text-slate-500 font-medium mb-3 sm:mb-4 uppercase tracking-wide text-[10px] sm:text-xs">Latín: Salvitas</p>
+          <ul class="space-y-2 sm:space-y-3 text-slate-700 text-sm">
+            <li><strong>Origen:</strong> Accidental, técnico, errores humanos.</li>
+            <li><strong>Objetivo:</strong> Preservación de la vida e integridad física.</li>
+            <li><strong>Ejemplos:</strong> Chalecos salvavidas, control de incendios, estabilidad de barcazas.</li>
+          </ul>
+          <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slate-100">
+            <span class="inline-block bg-green-100 text-green-800 text-[10px] sm:text-xs px-2 py-1 rounded-full font-semibold">Prevención de Accidentes</span>
+          </div>
+        </div>
+
+        <!-- Security Card -->
+        <div id="security-card" class="bg-white rounded-xl shadow-lg border-l-8 border-slate-700 p-6 sm:p-8 cursor-pointer interactive-card opacity-90 hover:opacity-100" onclick="highlightCard('security')">
+          <div class="flex justify-between items-center mb-3 sm:mb-4">
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Security (Protección)</h3>
+            <span class="text-3xl sm:text-4xl">👮</span>
+          </div>
+          <p class="text-slate-500 font-medium mb-3 sm:mb-4 uppercase tracking-wide text-[10px] sm:text-xs">Latín: Securitas</p>
+          <ul class="space-y-2 sm:space-y-3 text-slate-700 text-sm">
+            <li><strong>Origen:</strong> Intencional, malicioso, criminal (Terceros).</li>
+            <li><strong>Objetivo:</strong> Defensa del patrimonio y activos.</li>
+            <li><strong>Ejemplos:</strong> Control de accesos, blindaje, escoltas, ciberseguridad.</li>
+          </ul>
+          <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slate-100">
+            <span class="inline-block bg-slate-200 text-slate-800 text-[10px] sm:text-xs px-2 py-1 rounded-full font-semibold">Mitigación de Ataques</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGULATIONS -->
+  <section id="regulations" class="py-12 sm:py-16 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8 sm:mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Ecosistema Regulatorio</h2>
+        <p class="mt-3 sm:mt-4 text-slate-600 text-sm sm:text-base">
+          La minería fluvial opera bajo un marco denso. Interactúe con las entidades para comprender sus competencias clave según la Ley 1242 de 2008 y normas conexas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="p-5 sm:p-6 border border-slate-200 rounded-lg hover:border-blue-500 transition-colors bg-slate-50">
+          <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🏛️</div>
+          <h4 class="font-bold text-slate-900">MinTransporte</h4>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1.5 sm:mt-2">Habilitación de empresas, expedición de licencias y patentes de navegación. Rector del Registro Nacional Fluvial.</p>
+        </div>
+        <div class="p-5 sm:p-6 border border-slate-200 rounded-lg hover:border-blue-500 transition-colors bg-slate-50">
+          <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🚢</div>
+          <h4 class="font-bold text-slate-900">DIMAR</h4>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1.5 sm:mt-2">Control en ríos fronterizos y zonas mixtas. Autoriza zarpes, inspecciones técnicas y seguridad de la vida humana.</p>
+        </div>
+        <div class="p-5 sm:p-6 border border-slate-200 rounded-lg hover:border-blue-500 transition-colors bg-slate-50">
+          <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🌊</div>
+          <h4 class="font-bold text-slate-900">Cormagdalena</h4>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1.5 sm:mt-2">Gestión del Río Magdalena. Mantenimiento de navegabilidad, dragado y señalización (boyas/luces).</p>
+        </div>
+        <div class="p-5 sm:p-6 border border-slate-200 rounded-lg hover:border-blue-500 transition-colors bg-slate-50">
+          <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🍃</div>
+          <h4 class="font-bold text-slate-900">ANLA</h4>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1.5 sm:mt-2">Licenciamiento ambiental. Seguimiento a planes de contingencia por derrames (Plan Nacional de Contingencia).</p>
+        </div>
+      </div>
+
+      <div class="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
+        <div class="bg-blue-50 p-6 sm:p-8 rounded-xl border border-blue-100">
+          <h3 class="font-bold text-blue-900 mb-3 sm:mb-4 text-lg sm:text-xl">Documentación Crítica de Flota</h3>
+          <ul class="space-y-3 sm:space-y-4">
+            <li class="flex items-start sm:items-center bg-white p-3 sm:p-4 rounded shadow-sm">
+              <span class="mt-0.5 sm:mt-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mr-3 text-xs sm:text-sm">1</span>
+              <span class="text-sm text-slate-700"><strong>Matrícula:</strong> Acredita propiedad ante el Estado.</span>
+            </li>
+            <li class="flex items-start sm:items-center bg-white p-3 sm:p-4 rounded shadow-sm">
+              <span class="mt-0.5 sm:mt-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mr-3 text-xs sm:text-sm">2</span>
+              <span class="text-sm text-slate-700"><strong>Patente de Navegación:</strong> Autoriza el servicio comercial.</span>
+            </li>
+            <li class="flex items-start sm:items-center bg-white p-3 sm:p-4 rounded shadow-sm">
+              <span class="mt-0.5 sm:mt-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mr-3 text-xs sm:text-sm">3</span>
+              <span class="text-sm text-slate-700"><strong>Certificado de Navegabilidad:</strong> Valida idoneidad técnica (Casco/Motor).</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-900 mb-3 sm:mb-4 text-lg sm:text-xl">Mercancías Peligrosas (SGA)</h3>
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium text-slate-500 uppercase tracking-wider">Clase</th>
+                  <th class="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium text-slate-500 uppercase tracking-wider">Riesgo Fluvial</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-slate-200">
+                <tr>
+                  <td class="px-4 sm:px-6 py-3 whitespace-nowrap font-medium text-amber-600">Clase 4.3</td>
+                  <td class="px-4 sm:px-6 py-3 text-slate-600">Gases inflamables al contacto con agua. Explosión en naufragios.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 sm:px-6 py-3 whitespace-nowrap font-medium text-red-600">Clase 3</td>
+                  <td class="px-4 sm:px-6 py-3 text-slate-600">Líquidos inflamables (Combustible). Incendio masivo y derrames.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 sm:px-6 py-3 whitespace-nowrap font-medium text-slate-600">Clase 8</td>
+                  <td class="px-4 sm:px-6 py-3 text-slate-600">Corrosivos. Daño estructural al casco de la nave.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 sm:px-6 py-3 whitespace-nowrap font-medium text-green-600">Clase 9</td>
+                  <td class="px-4 sm:px-6 py-3 text-slate-600">Peligros varios. Daño severo al medio ambiente acuático.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section id="risks" class="py-14 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Matriz Dinámica de Riesgos Fluviales</h2>
+        <p class="text-slate-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base">
+          Visualice los eventos críticos diferenciando entre fallos operativos (Safety) y ataques intencionales (Security). El tamaño de la burbuja indica la severidad del plan de respuesta requerido.
+        </p>
+
+        <div class="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2">
+          <button onclick="updateRiskFilter('all')" id="filter-all" class="px-4 sm:px-6 py-2 rounded-full border border-slate-300 text-xs sm:text-sm font-bold transition-all filter-btn-active">Todos</button>
+          <button onclick="updateRiskFilter('safety')" id="filter-safety" class="px-4 sm:px-6 py-2 rounded-full border border-slate-300 text-xs sm:text-sm font-bold transition-all">Safety (Accidentales)</button>
+          <button onclick="updateRiskFilter('security')" id="filter-security" class="px-4 sm:px-6 py-2 rounded-full border border-slate-300 text-xs sm:text-sm font-bold transition-all">Security (Maliciosos)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-10 items-stretch">
+        <div class="lg:col-span-2 bg-slate-50 rounded-2xl p-4 sm:p-6 border border-slate-200">
+          <div class="chart-container">
+            <canvas id="dynamicRiskChart"></canvas>
+          </div>
+          <div class="flex justify-between mt-3 sm:mt-4 text-[10px] sm:text-xs font-bold text-slate-400 px-4 sm:px-10">
+            <span>PROBABILIDAD BAJA</span>
+            <span>PROBABILIDAD ALTA</span>
+          </div>
+        </div>
+
+        <div id="risk-details" class="bg-indigo-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
+          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-indigo-700 pb-2">Análisis Seleccionado</h3>
+          <div id="risk-info-content">
+            <p class="text-indigo-200 italic text-sm">Toque una burbuja del mapa para ver el detalle del riesgo y su impacto operacional.</p>
+          </div>
+          <div id="risk-meta" class="mt-5 sm:mt-6 hidden">
+            <div class="flex flex-wrap items-center mb-3 sm:mb-4 gap-2">
+              <span id="risk-tag" class="px-2 py-1 rounded text-[10px] sm:text-xs font-bold uppercase"></span>
+              <span id="risk-severity" class="text-amber-400 font-bold text-xs sm:text-sm"></span>
+            </div>
+            <h4 class="font-bold text-indigo-300 text-xs sm:text-sm uppercase tracking-wider mb-2">Protocolo de Mitigación:</h4>
+            <p id="risk-mitigation" class="text-sm text-slate-100"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTINGENCY -->
+  <section id="contingency" class="py-14 sm:py-16 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4 sm:gap-6">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Planes de Contingencia Fluvial (PNC)</h2>
+          <p class="text-slate-600 mt-3 sm:mt-4 text-sm sm:text-base">
+            La operación minera requiere una respuesta estandarizada ante incidentes. Todo plan debe estar alineado con el <span class="font-bold text-indigo-600">Decreto 321 de 1999</span> (Plan Nacional de Contingencia).
+          </p>
+        </div>
+        <div class="bg-white px-3 sm:px-4 py-2 rounded-lg border border-slate-200 flex items-center shadow-sm">
+          <span class="animate-pulse mr-2 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full"></span>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-700 uppercase">Estado: Listo para Respuesta</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-8 mb-10 sm:mb-16">
+        <div class="contingency-step bg-white p-5 sm:p-6 rounded-xl shadow-sm border-t-4 border-indigo-500">
+          <span class="text-xl sm:text-2xl mb-3 sm:mb-4 block">📢</span>
+          <h4 class="font-bold text-slate-800 mb-1.5 sm:mb-2">1. Notificación</h4>
+          <p class="text-xs sm:text-sm text-slate-500">Activación de cadena de mando y reporte a DIMAR/Guardacostas.</p>
+        </div>
+        <div class="contingency-step bg-white p-5 sm:p-6 rounded-xl shadow-sm border-t-4 border-emerald-500">
+          <span class="text-xl sm:text-2xl mb-3 sm:mb-4 block">📐</span>
+          <h4 class="font-bold text-slate-800 mb-1.5 sm:mb-2">2. Evaluación</h4>
+          <p class="text-xs sm:text-sm text-slate-500">Clasificación del derrame o evento (Nivel 1, 2 o 3).</p>
+        </div>
+        <div class="contingency-step bg-white p-5 sm:p-6 rounded-xl shadow-sm border-t-4 border-amber-500">
+          <span class="text-xl sm:text-2xl mb-3 sm:mb-4 block">🛡️</span>
+          <h4 class="font-bold text-slate-800 mb-1.5 sm:mb-2">3. Control</h4>
+          <p class="text-xs sm:text-sm text-slate-500">Despliegue de barreras, seguridad física o maniobras de salvamento.</p>
+        </div>
+        <div class="contingency-step bg-white p-5 sm:p-6 rounded-xl shadow-sm border-t-4 border-slate-800">
+          <span class="text-xl sm:text-2xl mb-3 sm:mb-4 block">📝</span>
+          <h4 class="font-bold text-slate-800 mb-1.5 sm:mb-2">4. Recuperación</h4>
+          <p class="text-xs sm:text-sm text-slate-500">Disposición de residuos y reporte final de lecciones aprendidas.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <div class="p-4 sm:p-6 bg-slate-900 text-white flex justify-between items-center">
+          <h3 class="font-bold text-sm sm:text-base">Matriz de Recursos de Contingencia</h3>
+          <span class="text-[10px] sm:text-xs bg-indigo-500 px-2 py-1 rounded">Update: Feb 2024</span>
+        </div>
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase text-[11px] sm:text-xs">
+              <tr>
+                <th class="p-3 sm:p-4 font-bold">Tipo de Incidente</th>
+                <th class="p-3 sm:p-4 font-bold">Recurso Clave</th>
+                <th class="p-3 sm:p-4 font-bold">Acción Inmediata</th>
+                <th class="p-3 sm:p-4 font-bold">Responsable</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-indigo-50 transition-colors">
+                <td class="p-3 sm:p-4 font-semibold text-rose-600">Ataque GAO (Security)</td>
+                <td class="p-3 sm:p-4">Escolta Armada / Puesto Control</td>
+                <td class="p-3 sm:p-4">Maniobras Evasivas / SOS</td>
+                <td class="p-3 sm:p-4">Oficial de Seguridad (OCPM)</td>
+              </tr>
+              <tr class="hover:bg-indigo-50 transition-colors">
+                <td class="p-3 sm:p-4 font-semibold text-emerald-600">Naufragio/Varadura (Safety)</td>
+                <td class="p-3 sm:p-4">Remolcador de Apoyo / Motobombas</td>
+                <td class="p-3 sm:p-4">Asegurar Carga / Alije</td>
+                <td class="p-3 sm:p-4">Capitán del Buque / Jefe Flota</td>
+              </tr>
+              <tr class="hover:bg-indigo-50 transition-colors">
+                <td class="p-3 sm:p-4 font-semibold text-amber-600">Derrame Hidrocarburos</td>
+                <td class="p-3 sm:p-4">Barreras Absorbentes / Skimmer</td>
+                <td class="p-3 sm:p-4">Contención de Mancha</td>
+                <td class="p-3 sm:p-4">Equipo HSEQ / Ambiental</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PBIP -->
+  <section class="py-14 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">Protección de Buques e Instalaciones (PBIP)</h2>
+        <p class="text-slate-600 mb-6 sm:mb-8 text-sm sm:text-base">
+          La seguridad minero-fluvial no es opcional. El cumplimiento del código internacional garantiza la continuidad del negocio y la integridad de la exportación.
+        </p>
+        <div class="space-y-3 sm:space-y-4">
+          <div class="p-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all cursor-pointer group" onclick="setISPS(1)">
+            <div class="flex justify-between items-center">
+              <span class="font-bold group-hover:text-indigo-600 text-sm sm:text-base">Nivel 1: Seguridad Normal</span>
+              <span class="text-emerald-500 text-xs sm:text-sm">● Operativo</span>
+            </div>
+          </div>
+          <div class="p-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all cursor-pointer group" onclick="setISPS(2)">
+            <div class="flex justify-between items-center">
+              <span class="font-bold group-hover:text-indigo-600 text-sm sm:text-base">Nivel 2: Riesgo Incrementado</span>
+              <span class="text-amber-500 text-xs sm:text-sm">● Alerta</span>
+            </div>
+          </div>
+          <div class="p-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition-all cursor-pointer group" onclick="setISPS(3)">
+            <div class="flex justify-between items-center">
+              <span class="font-bold group-hover:text-indigo-600 text-sm sm:text-base">Nivel 3: Amenaza Inminente</span>
+              <span class="text-rose-500 text-xs sm:text-sm">● Crítico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="isps-panel" class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col justify-center min-h-[320px] sm:min-h-[400px]">
+        <div id="isps-placeholder">
+          <div class="text-center">
+            <span class="text-4xl sm:text-5xl block mb-3 sm:mb-4">🛡️</span>
+            <h3 class="text-lg sm:text-xl font-bold">Panel de Control PBIP</h3>
+            <p class="text-slate-400 mt-2 text-sm">Seleccione un nivel de seguridad para ver los protocolos de contingencia asociados.</p>
+          </div>
+        </div>
+        <div id="isps-active" class="hidden">
+          <h3 id="isps-title" class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"></h3>
+          <p id="isps-desc" class="text-slate-300 mb-4 sm:mb-6 text-sm sm:text-base"></p>
+          <ul id="isps-list" class="space-y-2 sm:space-y-3 text-sm"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTIC -->
+  <section id="diagnostic" class="py-14 sm:py-16 bg-indigo-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Kit de Diagnóstico Estratégico</h2>
+        <p class="text-slate-600 mt-3 sm:mt-4 text-sm sm:text-base">Cuestionario fundamental para evaluar la madurez en seguridad y respuesta a contingencias del cliente minero.</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Puedes reemplazar el for de Jinja si lo deseas; esto es estático para evitar errores -->
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+          <button onclick="toggleDiagnostic(1)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center hover:bg-slate-50">
+            <span class="font-bold text-slate-800 text-sm sm:text-base">01. Gestión de la Contingencia Ambiental</span>
+            <span id="diag-icon-1" class="transition-transform">▼</span>
+          </button>
+          <div id="diag-content-1" class="hidden p-5 sm:p-6 bg-slate-50 border-t border-slate-100">
+            <p class="italic text-slate-700 text-sm">“¿Cómo se integra su Plan de Contingencia Fluvial con el Plan Nacional de Contingencia ante derrames de hidrocarburos y qué tiempo de respuesta tienen sus cuadrillas?”</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Safety</span>
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Ambiental</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+          <button onclick="toggleDiagnostic(2)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center hover:bg-slate-50">
+            <span class="font-bold text-slate-800 text-sm sm:text-base">02. Capacidad de Reacción Asimétrica</span>
+            <span id="diag-icon-2" class="transition-transform">▼</span>
+          </button>
+          <div id="diag-content-2" class="hidden p-5 sm:p-6 bg-slate-50 border-t border-slate-100">
+            <p class="italic text-slate-700 text-sm">“Ante una amenaza de Nivel 3 (PBIP), ¿cuál es el protocolo de comunicación cifrada con la Armada Nacional y cómo protegen la integridad del personal civil en las barcazas?”</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Security</span>
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Táctico</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+          <button onclick="toggleDiagnostic(3)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center hover:bg-slate-50">
+            <span class="font-bold text-slate-800 text-sm sm:text-base">03. Auditoría de Habilitaciones Fluviales</span>
+            <span id="diag-icon-3" class="transition-transform">▼</span>
+          </button>
+          <div id="diag-content-3" class="hidden p-5 sm:p-6 bg-slate-50 border-t border-slate-100">
+            <p class="italic text-slate-700 text-sm">“¿Están todas sus empresas navieras contratistas certificadas en BASC y cuentan con pólizas de responsabilidad civil extracontractual por contaminación?”</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Normativo</span>
+              <span class="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-1 rounded font-bold uppercase">Cumplimiento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="bg-slate-900 text-slate-400 py-10 sm:py-12 border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <p class="mb-1.5 sm:mb-2 font-bold text-indigo-400 text-sm sm:text-base">Consultoría Estratégica en Seguridad Fluvial</p>
+    <p class="text-xs sm:text-sm">Diseñado para la industria minera colombiana. © 2024</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll suave
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Menú móvil
+  const btnMobile = document.getElementById('btn-mobile');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  function toggleMenu(force) {
+    const toOpen = typeof force === 'boolean' ? force : mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden', !toOpen);
+    iconOpen.classList.toggle('hidden', toOpen);
+    iconClose.classList.toggle('hidden', !toOpen);
+    document.body.style.overflow = toOpen ? 'hidden' : '';
+  }
+  if (btnMobile) btnMobile.addEventListener('click', () => toggleMenu());
+  window.addEventListener('resize', () => { if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) toggleMenu(false); });
+
+  // highlightCard para evitar error de referencia
+  function highlightCard(kind) {
+    const safety = document.getElementById('safety-card');
+    const security = document.getElementById('security-card');
+    if (!safety || !security) return;
+    // resalta la seleccionada y atenúa la otra
+    if (kind === 'safety') {
+      safety.classList.remove('opacity-60');
+      security.classList.add('opacity-60');
+    } else {
+      security.classList.remove('opacity-60');
+      safety.classList.add('opacity-60');
+    }
+  }
+
+  // Datos de riesgos
+  const riskData = [
+    { x: 8, y: 3, r: 12, label: 'Varadura por Sedimentos', type: 'safety', impact: 'Pérdida de días operativos, sobrecostos de dragado.', mitigation: 'Monitoreo batimétrico en tiempo real y boyas inteligentes.', severity: 'Media-Alta' },
+    { x: 5, y: 8, r: 20, label: 'Derrame Combustible', type: 'safety', impact: 'Multas ambientales críticas, daño reputacional severo.', mitigation: 'Activación inmediata del PNC Nivel 2 y barreras de contención.', severity: 'CRÍTICA' },
+    { x: 7, y: 4, r: 10, label: 'Falla Mecánica Motores', type: 'safety', impact: 'Deriva peligrosa en canales de navegación estrechos.', mitigation: 'Mantenimiento preventivo basado en horas de motor (Telemática).', severity: 'Media' },
+    { x: 4, y: 9, r: 25, label: 'Ataque de GAO', type: 'security', impact: 'Amenaza directa a la vida y control territorial delictivo.', mitigation: 'Escolta militar, coordinación con el oficial OCPM.', severity: 'EXTREMA' },
+    { x: 9, y: 5, r: 14, label: 'Robo de Combustible (Ordeño)', type: 'security', impact: 'Pérdida hormiga millonaria en trayectos largos.', mitigation: 'Sensores de flujo diferencial y cámaras de seguridad con visión nocturna.', severity: 'Alta' },
+    { x: 3, y: 7, r: 18, label: 'Bloqueo Social (Comunidades)', type: 'security', impact: 'Paralización total de la exportación por conflictos locales.', mitigation: 'Relacionamiento social proactivo y acuerdos de compensación.', severity: 'Muy Alta' }
+  ];
+
+  let riskChart;
+
+  function initChart() {
+    const canvas = document.getElementById('dynamicRiskChart');
+    if (!canvas || typeof Chart === 'undefined') return; // seguridad si Chart.js no cargó
+    const ctx = canvas.getContext('2d');
+    riskChart = new Chart(ctx, {
+      type: 'bubble',
+      data: {
+        datasets: [{
+          label: 'Riesgos',
+          data: riskData,
+          backgroundColor: (c) => c.raw?.type === 'safety' ? 'rgba(16,185,129,0.6)' : 'rgba(244,63,94,0.6)',
+          borderColor: (c) => c.raw?.type === 'safety' ? '#10b981' : '#f43f5e',
+          borderWidth: 2,
+          hoverRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        onClick: (evt, active) => {
+          if (active.length) {
+            const { datasetIndex, index } = active[0];
+            const data = riskChart.data.datasets[datasetIndex].data[index];
+            showRiskDetails(data);
+            if (window.innerWidth < 1024) document.getElementById('risk-details')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        },
+        scales: {
+          x: { min: 0, max: 10, grid: { color: '#e2e8f0' }, ticks: { font: { size: 10 } } },
+          y: { min: 0, max: 10, grid: { color: '#e2e8f0' }, title: { display: true, text: 'IMPACTO OPERACIONAL', font: { weight: 'bold' } }, ticks: { font: { size: 10 } } }
+        },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.label}: Prob ${c.raw.x}, Imp ${c.raw.y}` } } }
+      }
+    });
+  }
+
+  function updateRiskFilter(type) {
+    ['all', 'safety', 'security'].forEach(t => document.getElementById(`filter-${t}`)?.classList.remove('filter-btn-active'));
+    document.getElementById(`filter-${type}`)?.classList.add('filter-btn-active');
+
+    const filteredData = type === 'all' ? riskData : riskData.filter(d => d.type === type);
+    if (riskChart) {
+      riskChart.data.datasets[0].data = filteredData;
+      riskChart.update();
+    }
+  }
+
+  function showRiskDetails(data) {
+    const container = document.getElementById('risk-info-content');
+    const meta = document.getElementById('risk-meta');
+    const tag = document.getElementById('risk-tag');
+    const severity = document.getElementById('risk-severity');
+    const mitigation = document.getElementById('risk-mitigation');
+    if (!container || !meta || !tag || !severity || !mitigation) return;
+
+    container.innerHTML = `
+      <h4 class="text-xl sm:text-2xl font-bold mb-2">${data.label}</h4>
+      <p class="text-indigo-200 text-sm mb-3 sm:mb-4">${data.impact}</p>
+    `;
+    meta.classList.remove('hidden');
+    tag.innerText = data.type;
+    tag.className = `px-2 py-1 rounded text-[10px] sm:text-xs font-bold uppercase ${data.type === 'safety' ? 'bg-emerald-500 text-emerald-950' : 'bg-rose-500 text-rose-950'}`;
+    severity.innerText = `SEVERIDAD: ${data.severity}`;
+    mitigation.innerText = data.mitigation;
+  }
+
+  // Acordeón
+  function toggleDiagnostic(id) {
+    const content = document.getElementById(`diag-content-${id}`);
+    const icon = document.getElementById(`diag-icon-${id}`);
+    const open = content?.classList.contains('hidden');
+    document.querySelectorAll('[id^="diag-content-"]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('[id^="diag-icon-"]').forEach(ic => ic.style.transform = 'rotate(0deg)');
+    if (open && content && icon) {
+      content.classList.remove('hidden');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Init
+  window.addEventListener('load', initChart);
+</script>
 
 {% endblock %}
